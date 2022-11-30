@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5515DD72293781F300F895E6 /* BoolProtectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5515DD71293781F300F895E6 /* BoolProtectionTest.swift */; };
+		55167200293795B500867894 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 551671FF293795B500867894 /* README.md */; };
 		551D301D29377FBA00C375F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D301C29377FBA00C375F0 /* AppDelegate.swift */; };
 		551D301F29377FBA00C375F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D301E29377FBA00C375F0 /* SceneDelegate.swift */; };
 		551D302129377FBA00C375F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D302029377FBA00C375F0 /* ViewController.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		5515DD71293781F300F895E6 /* BoolProtectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolProtectionTest.swift; sourceTree = "<group>"; };
+		551671FF293795B500867894 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		551D301929377FBA00C375F0 /* JsonDecodeProtection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JsonDecodeProtection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		551D301C29377FBA00C375F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		551D301E29377FBA00C375F0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 		551D301029377FBA00C375F0 = {
 			isa = PBXGroup;
 			children = (
+				551671FF293795B500867894 /* README.md */,
 				551D304E29377FEB00C375F0 /* SourceCode */,
 				551D301B29377FBA00C375F0 /* JsonDecodeProtection */,
 				551D303229377FBB00C375F0 /* JsonDecodeProtectionTests */,
@@ -209,6 +212,7 @@
 			files = (
 				551D302929377FBB00C375F0 /* LaunchScreen.storyboard in Resources */,
 				551D302629377FBB00C375F0 /* Assets.xcassets in Resources */,
+				55167200293795B500867894 /* README.md in Resources */,
 				551D302429377FBA00C375F0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
