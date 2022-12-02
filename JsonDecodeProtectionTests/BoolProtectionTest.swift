@@ -6,8 +6,10 @@
 //
 
 import XCTest
-@testable import JsonDecodeProtection
+@testable
+import JsonDecodeProtection
 
+private
 struct BoolObject: Decodable
 {
     @BoolProtection
@@ -30,12 +32,6 @@ final class BoolProtectionTest: XCTestCase
         // Act
         
         // Assert
-    }
-    
-    override func tearDownWithError() throws
-    {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        
     }
     
     func testBoolProtectSuccess() throws
