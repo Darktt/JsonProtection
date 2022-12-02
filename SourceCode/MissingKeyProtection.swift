@@ -1,5 +1,5 @@
 //
-//  NilProtection.swift
+//  MissingKeyProtection.swift
 //
 //  Created by Eden on 2022/6/14.
 //  Copyright © 2022 Darktt. All rights reserved.
@@ -9,14 +9,14 @@ import Foundation
 
 // MARK: - NilProtecting -
 
-public protocol NilProtecting: Decodable
+public protocol MissingKeyProtecting: Decodable
 {
     associatedtype WrappedType: ExpressibleByNilLiteral
     
     init(wrappedValue: WrappedType)
 }
 
-// MARK: - NilProtection -
+// MARK: - MissingKeyProtection -
 
 /**
  Handle json key maybe not exist issue.
@@ -27,7 +27,7 @@ public protocol NilProtecting: Decodable
  {
     var foo: [String]?
     
-    @NilProtection
+    @MissingKeyProtection
     var third: String?
  }
  
@@ -65,7 +65,7 @@ public protocol NilProtecting: Decodable
  ```
  */
 @propertyWrapper
-public struct NilProtection<Value>: NilProtecting where Value: Decodable
+public struct MissingKeyProtection<Value>: MissingKeyProtecting where Value: Decodable
 {
     // MARK: - Properties -
     
@@ -82,7 +82,7 @@ public struct NilProtection<Value>: NilProtecting where Value: Decodable
 
 // MARK: - Conform Protocols -
 
-extension NilProtection: Decodable
+extension MissingKeyProtection: Decodable
 {
     public init(from decoder: Decoder) throws
     {
@@ -93,7 +93,7 @@ extension NilProtection: Decodable
     }
 }
 
-extension NilProtection: CustomStringConvertible
+extension MissingKeyProtection: CustomStringConvertible
 {
     public var description: String
     {
@@ -108,7 +108,7 @@ extension NilProtection: CustomStringConvertible
 
 extension KeyedDecodingContainer
 {
-    public func decode<T>(_ type: T.Type, forKey key: KeyedDecodingContainer<K>.Key) throws -> T where T: NilProtecting
+    public func decode<T>(_ type: T.Type, forKey key: KeyedDecodingContainer<K>.Key) throws -> T where T: MissingKeyProtecting
     {
         let result: T = try self.decodeIfPresent(T.self, forKey: key) ?? T(wrappedValue: nil)
         
