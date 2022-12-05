@@ -34,7 +34,7 @@ final class MissingKeyProtectionTest: XCTestCase
         // Assert
     }
     
-    func testWithMissingKey() throws
+    func testWithMissingKeySuccess() throws
     {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
