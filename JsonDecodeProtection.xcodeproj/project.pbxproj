@@ -24,6 +24,7 @@
 		552C7BE5293A1E3E00B4B5EE /* MissingKeyProtectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552C7BE4293A1E3E00B4B5EE /* MissingKeyProtectionTest.swift */; };
 		559545A7293E12140060F43D /* ObjectProtectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559545A6293E12140060F43D /* ObjectProtectionTest.swift */; };
 		F2432DE32939D8F400B1E010 /* BoolProtectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5515DD71293781F300F895E6 /* BoolProtectionTest.swift */; };
+		F264CAD2293F1F4400AEC100 /* MultipleKeyProtection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F264CAD1293F1F4400AEC100 /* MultipleKeyProtection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		552C7BE4293A1E3E00B4B5EE /* MissingKeyProtectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingKeyProtectionTest.swift; sourceTree = "<group>"; };
 		559545A6293E12140060F43D /* ObjectProtectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectProtectionTest.swift; sourceTree = "<group>"; };
 		F2432DDA2939D5D100B1E010 /* JsonDecodeProtectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JsonDecodeProtectionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F264CAD1293F1F4400AEC100 /* MultipleKeyProtection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleKeyProtection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,11 +127,12 @@
 			isa = PBXGroup;
 			children = (
 				551D304F29377FEB00C375F0 /* BoolProtection.swift */,
+				551D305329377FEB00C375F0 /* MissingKeyProtection.swift */,
+				F264CAD1293F1F4400AEC100 /* MultipleKeyProtection.swift */,
+				551D305229377FEB00C375F0 /* NumberProtection.swift */,
+				551D305429377FEB00C375F0 /* NumbersProtection.swift */,
 				551D305029377FEB00C375F0 /* ObjectProtection.swift */,
 				551D305129377FEB00C375F0 /* UIImageProtection.swift */,
-				551D305229377FEB00C375F0 /* NumberProtection.swift */,
-				551D305329377FEB00C375F0 /* MissingKeyProtection.swift */,
-				551D305429377FEB00C375F0 /* NumbersProtection.swift */,
 				551D305529377FEB00C375F0 /* URLProtection.swift */,
 			);
 			path = SourceCode;
@@ -237,6 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F264CAD2293F1F4400AEC100 /* MultipleKeyProtection.swift in Sources */,
 				551D305729377FEB00C375F0 /* ObjectProtection.swift in Sources */,
 				551D305B29377FEB00C375F0 /* NumbersProtection.swift in Sources */,
 				551D302129377FBA00C375F0 /* ViewController.swift in Sources */,

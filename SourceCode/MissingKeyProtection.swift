@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - NilProtecting -
+// MARK: - MissingKeyProtecting -
 
 public protocol MissingKeyProtecting: Decodable
 {
