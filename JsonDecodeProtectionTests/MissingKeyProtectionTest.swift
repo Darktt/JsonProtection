@@ -13,10 +13,12 @@ private
 struct MissingKeyObject: Decodable
 {
     @MissingKeyProtection
-    private(set) var existKey: String?
+    private(set)
+    var existKey: String?
     
     @MissingKeyProtection
-    private(set) var missingKey: String?
+    private(set)
+    var missingKey: String?
 }
 
 final class MissingKeyProtectionTest: XCTestCase
@@ -34,7 +36,7 @@ final class MissingKeyProtectionTest: XCTestCase
         // Assert
     }
     
-    func testWithMissingKeySuccess() throws
+    func testMissingKeyProtectionSuccess() throws
     {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         

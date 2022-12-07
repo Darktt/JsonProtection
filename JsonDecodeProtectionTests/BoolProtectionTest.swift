@@ -34,7 +34,7 @@ final class BoolProtectionTest: XCTestCase
         // Assert
     }
     
-    func testBoolProtectSuccess() throws
+    func testBoolProtectionSuccess() throws
     {
         // Arrange
         self.jsonString = """
@@ -54,7 +54,7 @@ final class BoolProtectionTest: XCTestCase
         XCTAssertTrue(object.false == false)
     }
     
-    func testBoolProtectFalure()
+    func testBoolProtectionFalure()
     {
         // Arrange
         self.jsonString = """
@@ -74,7 +74,10 @@ final class BoolProtectionTest: XCTestCase
             // Assert
             if case let .dataCorrupted(context) = error as? DecodingError {
                 
-                XCTAssertEqual(context.debugDescription, "Expect `0` or `1` but found `4` instead")
+                let actual: String = context.debugDescription
+                let expect: String = "Expect `0` or `1` but found `4` instead"
+                
+                XCTAssertEqual(actual, expect)
             }
         }
     }

@@ -59,8 +59,10 @@ final class ObjectProtectionTest: XCTestCase
         let object = try jsonDecoder.decode(SomeObject.self, from: jsonData)
         
         // Assert
-        XCTAssertEqual(object.subObjects?.count, 2)
-        XCTAssertEqual(object.subObjects?.last?.name, "Ana")
+        let actual: String? = object.subObjects?.last?.name
+        let expect: String = "Ana"
+        
+        XCTAssertEqual(actual, expect)
     }
     
 }
