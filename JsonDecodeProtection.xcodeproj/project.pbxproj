@@ -25,6 +25,8 @@
 		559545A7293E12140060F43D /* ObjectProtectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559545A6293E12140060F43D /* ObjectProtectionTest.swift */; };
 		55A1DAA22940AF3A00244FE2 /* NumberProtectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A1DAA12940AF3A00244FE2 /* NumberProtectionTest.swift */; };
 		F2432DE32939D8F400B1E010 /* BoolProtectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5515DD71293781F300F895E6 /* BoolProtectionTest.swift */; };
+		F257F85B294C5CAA00FED754 /* NumbersProtectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F257F85A294C5CAA00FED754 /* NumbersProtectionTest.swift */; };
+		F257F85D294C5E4600FED754 /* URLProtectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F257F85C294C5E4600FED754 /* URLProtectionTest.swift */; };
 		F264CAD2293F1F4400AEC100 /* MultipleKeyProtection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F264CAD1293F1F4400AEC100 /* MultipleKeyProtection.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,8 @@
 		559545A6293E12140060F43D /* ObjectProtectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectProtectionTest.swift; sourceTree = "<group>"; };
 		55A1DAA12940AF3A00244FE2 /* NumberProtectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberProtectionTest.swift; sourceTree = "<group>"; };
 		F2432DDA2939D5D100B1E010 /* JsonDecodeProtectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JsonDecodeProtectionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F257F85A294C5CAA00FED754 /* NumbersProtectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersProtectionTest.swift; sourceTree = "<group>"; };
+		F257F85C294C5E4600FED754 /* URLProtectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtectionTest.swift; sourceTree = "<group>"; };
 		F264CAD1293F1F4400AEC100 /* MultipleKeyProtection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleKeyProtection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,7 +125,9 @@
 				5515DD71293781F300F895E6 /* BoolProtectionTest.swift */,
 				552C7BE4293A1E3E00B4B5EE /* MissingKeyProtectionTest.swift */,
 				55A1DAA12940AF3A00244FE2 /* NumberProtectionTest.swift */,
+				F257F85A294C5CAA00FED754 /* NumbersProtectionTest.swift */,
 				559545A6293E12140060F43D /* ObjectProtectionTest.swift */,
+				F257F85C294C5E4600FED754 /* URLProtectionTest.swift */,
 			);
 			path = JsonDecodeProtectionTests;
 			sourceTree = "<group>";
@@ -261,7 +267,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F257F85D294C5E4600FED754 /* URLProtectionTest.swift in Sources */,
 				559545A7293E12140060F43D /* ObjectProtectionTest.swift in Sources */,
+				F257F85B294C5CAA00FED754 /* NumbersProtectionTest.swift in Sources */,
 				55A1DAA22940AF3A00244FE2 /* NumberProtectionTest.swift in Sources */,
 				F2432DE32939D8F400B1E010 /* BoolProtectionTest.swift in Sources */,
 				552C7BE5293A1E3E00B4B5EE /* MissingKeyProtectionTest.swift in Sources */,
