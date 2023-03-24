@@ -39,7 +39,7 @@ final class BoolProtectionTest: XCTestCase
         // Arrange
         self.jsonString = """
         {
-            "true": 1,
+            "true": true,
             "false": "FALSE"
         }
         """
@@ -54,7 +54,7 @@ final class BoolProtectionTest: XCTestCase
         XCTAssertTrue(object.false == false)
     }
     
-    func testBoolProtectionFalure()
+    func testBoolProtectionFailure()
     {
         // Arrange
         self.jsonString = """

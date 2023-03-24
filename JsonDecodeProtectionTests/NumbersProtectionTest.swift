@@ -36,7 +36,7 @@ final class NumbersProtectionTest: XCTestCase
         // Arrange
         self.jsonString = """
         {
-            "index": [10, 20, 50, 100]
+            "index": ["10", "20", "50", "100"]
         }
         """
         let jsonData: Data = self.jsonString.data(using: .utf8)!

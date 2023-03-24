@@ -31,6 +31,12 @@ extension BoolProtection: Decodable
     {
         let container: SingleValueDecodingContainer = try decoder.singleValueContainer()
         
+        if let boolValue = try? container.decode(Bool.self) {
+            
+            self.wrappedValue = boolValue
+            return
+        }
+        
         if let stringValue = try? container.decode(String.self).lowercased() {
             
             switch stringValue {

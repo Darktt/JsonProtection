@@ -8,7 +8,7 @@
 import Foundation
 
 @propertyWrapper
-public struct NumbersProtection<Element>: MissingKeyProtecting where Element: NumberType
+public struct NumbersProtection<Element>: MissingKeyProtecting where Element: Decodable, Element: NumberType
 {
     // MARK: - Properties -
     

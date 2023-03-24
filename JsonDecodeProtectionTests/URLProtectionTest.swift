@@ -15,7 +15,6 @@ struct URLObject: Decodable
     private(set)
     var homePageUrl: URL?
     
-    @MissingKeyProtection
     private(set)
     var detailPageUrl: URL?
 }
@@ -40,7 +39,8 @@ final class URLProtectionTest: XCTestCase
         // Arrange
         self.jsonString = """
         {
-            "homePageUrl": "https://www.google.com"
+            "homePageUrl": "",
+            "detailPageUrl": "https://www.google.com"
         }
         """
         let jsonData: Data = self.jsonString.data(using: .utf8)!
@@ -50,31 +50,37 @@ final class URLProtectionTest: XCTestCase
         let object = try jsonDecoder.decode(URLObject.self, from: jsonData)
         
         // Assert
-        let actual: URL? = object.homePageUrl
+        let actualOne: URL? = object.homePageUrl
+        let actualTwo: URL? = object.detailPageUrl
         let expect: String = "https://www.google.com"
         
-        XCTAssertEqual(actual?.absoluteString, expect)
+        XCTAssertEqual(actualOne?.absoluteString, nil)
+        XCTAssertEqual(actualTwo?.absoluteString, expect)
     }
     
-//    func testURLProtectionFalse() throws
-//    {
-//        // Arrange
-//        self.jsonString = """
-//        {
-//            "homePageUrl": "https://www.google.com",
-//            "detailPageUrl": ""
-//        }
-//        """
-//        let jsonData: Data = self.jsonString.data(using: .utf8)!
-//        let jsonDecoder = JSONDecoder()
-//        
-//        // Act
-//        let object = try jsonDecoder.decode(URLObject.self, from: jsonData)
-//        
-//        // Assert
-//        let actual: URL? = object.detailPageUrl
-//        let expect: String = "https://"
-//        
-//        XCTAssertEqual(actual?.absoluteString, expect)
-//    }
+    func testURLProtectionFalse() throws
+    {
+        // Arrange
+        self.jsonString = """
+        {
+            "homePageUrl": "https://www.google.com",
+            "detailPageUrl": ""
+        }
+        """
+        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonDecoder = JSONDecoder()
+        
+        // Act
+        var decodeError: Error? = nil
+        
+        do {
+            
+            _ = try jsonDecoder.decode(URLObject.self, from: jsonData)
+        } catch {
+            
+            decodeError = error
+        }
+        
+        XCTAssertNotNil(decodeError)
+    }
 }
