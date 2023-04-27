@@ -64,6 +64,7 @@
 		552C7BE4293A1E3E00B4B5EE /* MissingKeyProtectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingKeyProtectionTest.swift; sourceTree = "<group>"; };
 		559545A6293E12140060F43D /* ObjectProtectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectProtectionTest.swift; sourceTree = "<group>"; };
 		55A1DAA12940AF3A00244FE2 /* NumberProtectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberProtectionTest.swift; sourceTree = "<group>"; };
+		F20F219B29F0C81000A1B6F1 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		F22A05A629E40BFD003D30C1 /* DTAES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTAES.swift; sourceTree = "<group>"; };
 		F2432DDA2939D5D100B1E010 /* JsonDecodeProtectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JsonDecodeProtectionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F257F85A294C5CAA00FED754 /* NumbersProtectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersProtectionTest.swift; sourceTree = "<group>"; };
@@ -95,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				551671FF293795B500867894 /* README.md */,
+				F20F219B29F0C81000A1B6F1 /* Package.swift */,
 				551D304E29377FEB00C375F0 /* SourceCode */,
 				551D301B29377FBA00C375F0 /* JsonDecodeProtection */,
 				551D303229377FBB00C375F0 /* JsonDecodeProtectionTests */,
@@ -142,6 +144,14 @@
 		551D304E29377FEB00C375F0 /* SourceCode */ = {
 			isa = PBXGroup;
 			children = (
+				F2AE0C4E29FA20AE0094865D /* JsonProtection */,
+			);
+			path = SourceCode;
+			sourceTree = "<group>";
+		};
+		F2AE0C4E29FA20AE0094865D /* JsonProtection */ = {
+			isa = PBXGroup;
+			children = (
 				551D304F29377FEB00C375F0 /* BoolProtection.swift */,
 				551D305329377FEB00C375F0 /* MissingKeyProtection.swift */,
 				F264CAD1293F1F4400AEC100 /* MultipleKeyProtection.swift */,
@@ -153,7 +163,7 @@
 				F297055B29E3E69D003CF4B2 /* AESDecoder.swift */,
 				F22A05A629E40BFD003D30C1 /* DTAES.swift */,
 			);
-			path = SourceCode;
+			path = JsonProtection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

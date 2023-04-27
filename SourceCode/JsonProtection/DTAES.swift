@@ -13,10 +13,10 @@ public class DTAES
 {
     // MARK: - Properties -
     
-    public var operation: Operation
-    public var options: Options
-    public var key: Data = Data()
-    public var iv: Data?
+    internal var operation: Operation
+    internal var options: Options
+    internal var key: Data = Data()
+    internal var iv: Data?
     
     private var contentString: String?
     private var contentData: Data
@@ -33,29 +33,29 @@ public class DTAES
     // MARK: - Methods -
     // MARK: Initial Method
     
-    public convenience init(_ string: String)
+    internal convenience init(_ string: String)
     {
         self.init(Data())
         self.contentString = string
     }
     
-    public init(_ data: Data)
+    internal init(_ data: Data)
     {
         self.operation = .encrypt
         self.options = []
         self.contentData = data
     }
     
-    public convenience init(_ bytes: UnsafeRawPointer, length: Int)
+    internal convenience init(_ bytes: UnsafeRawPointer, length: Int)
     {
         let contentData = Data(bytes: bytes, count: length)
         
         self.init(contentData)
     }
     
-    // MARK: - Public Methods -
+    // MARK: - internal Methods -
     
-    public func setKey(_ keyString: String)
+    internal func setKey(_ keyString: String)
     {
         guard let key: Data = keyString.data(using: .utf8) else {
             
@@ -65,7 +65,7 @@ public class DTAES
         self.key = key
     }
     
-    public func setIv(_ ivString: String)
+    internal func setIv(_ ivString: String)
     {
         guard let iv: Data = ivString.data(using: .utf8) else {
             
@@ -75,7 +75,7 @@ public class DTAES
         self.iv = iv
     }
     
-    public func result() throws -> String
+    internal func result() throws -> String
     {
         let data: Data = try self.result()
         
@@ -94,7 +94,7 @@ public class DTAES
         return result
     }
     
-    public func result() throws -> Data
+    internal func result() throws -> Data
     {
         if let contentString = self.contentString {
             
@@ -186,18 +186,21 @@ private extension DTAES
 
 // MARK: Enumerator, Options, Error
 
-public extension DTAES
+extension DTAES
 {
+    public
     enum Operation: Int
     {
         case encrypt = 0
+        
         case decrypt = 1
     }
     
+    public
     struct Options: OptionSet
     {
         public typealias RawValue = UInt8
-    
+        
         public static let pkc7Padding: Options = Options(rawValue: 0x0001)
         
         public static let ecbMode: Options = Options(rawValue: 0x0002)
@@ -220,7 +223,7 @@ public extension DTAES
 
 extension DTAES.Error: LocalizedError
 {
-    public var errorDescription: String?
+    internal var errorDescription: String?
     {
         return "\(self)"
     }
@@ -228,7 +231,7 @@ extension DTAES.Error: LocalizedError
 
 extension DTAES.Error: CustomStringConvertible
 {
-    public var description: String
+    internal var description: String
     {
         let description: String!
         
