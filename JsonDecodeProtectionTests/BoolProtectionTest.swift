@@ -13,10 +13,12 @@ private
 struct BoolObject: Decodable
 {
     @BoolProtection
-    private(set) var `true`: Bool?
+    private(set)
+    var `true`: Bool?
     
     @BoolProtection
-    private(set) var `false`: Bool?
+    private(set)
+    var `false`: Bool?
 }
 
 final class BoolProtectionTest: XCTestCase

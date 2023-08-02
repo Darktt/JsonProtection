@@ -72,7 +72,7 @@ extension Double: NumberType { }
 // MARK: - NumberProtection -
 
 @propertyWrapper
-public struct NumberProtection<DecodeType>: Decodable where DecodeType: Decodable, DecodeType: NumberType
+public struct NumberProtection<DecodeType>: MissingKeyProtecting where DecodeType: Decodable, DecodeType: NumberType
 {
     // MARK: - Properties -
     
@@ -87,7 +87,7 @@ public struct NumberProtection<DecodeType>: Decodable where DecodeType: Decodabl
     }
 }
 
-extension NumberProtection
+extension NumberProtection: Decodable
 {
     public init(from decoder: Decoder) throws
     {
