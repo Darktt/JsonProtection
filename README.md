@@ -164,7 +164,7 @@ extension Info
 }
 ```
 
-將要解析成 URL 的 property 套上 `@ObjectProtection` 進行型態保護
+將要解析成 URL 的 property 套上 `@UIImageProtection` 進行型態保護
 ```swift
 struct URLObject: Decodable
 {
