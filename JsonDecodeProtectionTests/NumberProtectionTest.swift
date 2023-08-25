@@ -14,6 +14,10 @@ struct NumberObject: Decodable
     @NumberProtection
     private(set)
     var index: Int?
+    
+    @NumberProtection
+    private(set)
+    var profit: Decimal?
 }
 
 final class NumberProtectionTest: XCTestCase
@@ -48,6 +52,27 @@ final class NumberProtectionTest: XCTestCase
         // Assert
         let actual: Int? = object.index
         let expect: Int = 99
+        
+        XCTAssertEqual(actual, expect)
+    }
+    
+    func testNumberProtectionSuccessForDecimalType() throws
+    {
+        // Arrange
+        self.jsonString = """
+        {
+            "profit": "0.04"
+        }
+        """
+        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonDecoder = JSONDecoder()
+        
+        // Act
+        let object = try jsonDecoder.decode(NumberObject.self, from: jsonData)
+        
+        // Assert
+        let actual: Decimal? = object.profit
+        let expect: Decimal = 0.04
         
         XCTAssertEqual(actual, expect)
     }

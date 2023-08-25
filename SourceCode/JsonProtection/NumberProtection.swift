@@ -63,6 +63,29 @@ extension NumberType where Self: RawRepresentable, RawValue: NumberType
     }
 }
 
+extension Decimal: NumberType
+{
+    public init?(_ source: String)
+    {
+        guard let value = Double(source) else {
+            
+            return nil
+        }
+        
+        self.init(value)
+    }
+    
+    public init?<T>(_ source: T) where T : BinaryInteger
+    {
+        self.init(exactly: source)
+    }
+    
+    public init?(_ source: Float)
+    {
+        self.init(Double(source))
+    }
+}
+
 extension Int: NumberType { }
 
 extension Float: NumberType { }

@@ -99,6 +99,7 @@ struct BikeLocation: Decodable
 > * Int
 > * Float
 > * Double
+> * Decimal
 > * 含以上型態的列舉 eg: `enum Type: Int`
 
 ---
