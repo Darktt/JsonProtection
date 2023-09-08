@@ -55,13 +55,15 @@ final class DateProtectionTest: XCTestCase
         """
         let jsonData: Data = self.jsonString.data(using: .utf8)!
         let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .secondsSince1970
         
         // Act
         let object = try jsonDecoder.decode(DateObject.self, from: jsonData)
-        let date = Date(timeIntervalSince1970: 1694106000.0)
+        let updateTime = Date(timeIntervalSince1970: 1694102400.0)
+        let expiredDate = Date(timeIntervalSince1970: 1694106000.0)
         
         // Assert
-        XCTAssertTrue(object.updateTime != nil)
-        XCTAssertEqual(object.expiredDate, date)
+        XCTAssertEqual(object.updateTime, updateTime)
+        XCTAssertEqual(object.expiredDate, expiredDate)
     }
 }
