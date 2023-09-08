@@ -1,13 +1,16 @@
 //
 //  AESDecoder.swift
-//  JsonDecodeProtection
 //
-//  Created by Eden on 2023/4/10.
+//  Created by Darktt on 2023/4/10.
+//  Copyright © 2023 Darktt. All rights reserved.
 //
 
 import Foundation
 
-public protocol AESAdopter
+// MARK: - AESAdopter -
+
+public
+protocol AESAdopter
 {
     static var key: String { get }
     
@@ -16,22 +19,30 @@ public protocol AESAdopter
     static var options: DTAES.Options { get }
 }
 
+// MARK: - AESDecoder -
+
 @propertyWrapper
-public struct AESDecoder<Adopter> where Adopter: AESAdopter
+public
+struct AESDecoder<Adopter> where Adopter: AESAdopter
 {
     // MARK: - Properties -
     
-    public var wrappedValue: String?
+    public
+    var wrappedValue: String?
     
     // MARK: - Methods -
     // MARK: Initial Method
     
-    public init(adopter: Adopter.Type) { }
+    public
+    init(adopter: Adopter.Type) { }
 }
+
+// MARK: - Conform Protocols -
 
 extension AESDecoder: Decodable
 {
-    public init(from decoder: Decoder) throws
+    public
+    init(from decoder: Decoder) throws
     {
         let container: SingleValueDecodingContainer = try decoder.singleValueContainer()
         let encryptedString: String = try container.decode(String.self)

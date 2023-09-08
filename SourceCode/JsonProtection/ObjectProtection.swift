@@ -1,7 +1,7 @@
 //
 //  ObjectProtection.swift
 //
-//  Created by Darktt on 22/6/9.
+//  Created by Darktt on 2022/6/9.
 //  Copyright © 2022 Darktt. All rights reserved.
 //
 
@@ -66,21 +66,25 @@ import Foundation
  ```
  */
 @propertyWrapper
-public struct ObjectProtection<Value> where Value: Decodable
+public
+struct ObjectProtection<Value> where Value: Decodable
 {
     // MARK: - Properties -
     
-    public var wrappedValue: Value?
+    public
+    var wrappedValue: Value?
     
     // MARK: - Methods -
     // MARK: Initial Method
     
-    public init() { }
+    public
+    init() { }
 }
 
 // MARK: - Private Methods -
 
-private extension ObjectProtection
+private
+extension ObjectProtection
 {
     func decode(with string: String) throws -> Value?
     {
@@ -100,7 +104,8 @@ private extension ObjectProtection
 
 extension ObjectProtection: Decodable
 {
-    public init(from decoder: Decoder) throws
+    public
+    init(from decoder: Decoder) throws
     {
         let container: SingleValueDecodingContainer = try decoder.singleValueContainer()
         
@@ -113,7 +118,8 @@ extension ObjectProtection: Decodable
 
 extension ObjectProtection: CustomStringConvertible
 {
-    public var description: String
+    public
+    var description: String
     {
         self.wrappedValue.map {
             

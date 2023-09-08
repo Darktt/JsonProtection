@@ -1,7 +1,7 @@
 //
 //  MissingKeyProtection.swift
 //
-//  Created by Eden on 2022/6/14.
+//  Created by Darktt on 2022/6/14.
 //  Copyright © 2022 Darktt. All rights reserved.
 //
 
@@ -65,16 +65,19 @@ public protocol MissingKeyProtecting: Decodable
  ```
  */
 @propertyWrapper
-public struct MissingKeyProtection<Value>: MissingKeyProtecting where Value: Decodable
+public
+struct MissingKeyProtection<Value>: MissingKeyProtecting where Value: Decodable
 {
     // MARK: - Properties -
     
-    public var wrappedValue: Value?
+    public
+    var wrappedValue: Value?
     
     // MARK: - Methods -
     // MARK: Initial Method
     
-    public init(wrappedValue: Value?)
+    public
+    init(wrappedValue: Value?)
     {
         self.wrappedValue = wrappedValue
     }
@@ -84,7 +87,8 @@ public struct MissingKeyProtection<Value>: MissingKeyProtecting where Value: Dec
 
 extension MissingKeyProtection: Decodable
 {
-    public init(from decoder: Decoder) throws
+    public
+    init(from decoder: Decoder) throws
     {
         let container = try decoder.singleValueContainer()
         let wrappedValue: Value? = try? container.decode(Value.self)
@@ -95,7 +99,8 @@ extension MissingKeyProtection: Decodable
 
 extension MissingKeyProtection: CustomStringConvertible
 {
-    public var description: String
+    public
+    var description: String
     {
         self.wrappedValue.map {
             
@@ -108,7 +113,8 @@ extension MissingKeyProtection: CustomStringConvertible
 
 extension KeyedDecodingContainer
 {
-    public func decode<T>(_ type: T.Type, forKey key: KeyedDecodingContainer<K>.Key) throws -> T where T: MissingKeyProtecting
+    public
+    func decode<T>(_ type: T.Type, forKey key: KeyedDecodingContainer<K>.Key) throws -> T where T: MissingKeyProtecting
     {
         let result: T = try self.decodeIfPresent(T.self, forKey: key) ?? T(wrappedValue: nil)
         

@@ -10,7 +10,7 @@
 
 * File > Swift Packages > Add Package Dependency
 * Add https://github.com/Darktt/JsonProtection
-* Select "Up to Next Major" with "1.0.1"
+* Select "Up to Next Major" with "1.0.3"
 
 ## 功能說明
 
@@ -100,7 +100,9 @@ struct BikeLocation: Decodable
 > * Float
 > * Double
 > * Decimal
-> * 含以上型態的列舉 eg: `enum Type: Int`
+> * 含以上型態的列舉 
+    eg: `enum Type: Int`
+    (需套用 NumberType 這個 protocol)
 
 ---
 ## NumbersProtection

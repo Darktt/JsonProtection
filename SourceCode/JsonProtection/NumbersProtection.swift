@@ -8,16 +8,19 @@
 import Foundation
 
 @propertyWrapper
-public struct NumbersProtection<Element>: MissingKeyProtecting where Element: Decodable, Element: NumberType
+public
+struct NumbersProtection<Element>: MissingKeyProtecting where Element: Decodable, Element: NumberType
 {
     // MARK: - Properties -
     
-    public var wrappedValue: Array<Element>?
+    public
+    var wrappedValue: Array<Element>?
     
     // MARK: - Methods -
     // MARK: Initial Method
     
-    public init(wrappedValue: Array<Element>?)
+    public
+    init(wrappedValue: Array<Element>?)
     {
         self.wrappedValue = wrappedValue
     }
@@ -25,7 +28,8 @@ public struct NumbersProtection<Element>: MissingKeyProtecting where Element: De
 
 extension NumbersProtection: Decodable
 {
-    public init(from decoder: Decoder) throws
+    public
+    init(from decoder: Decoder) throws
     {
         let container: SingleValueDecodingContainer = try decoder.singleValueContainer()
         
@@ -72,7 +76,8 @@ extension NumbersProtection: Decodable
 
 extension NumbersProtection: CustomStringConvertible
 {
-    public var description: String
+    public
+    var description: String
     {
         self.wrappedValue.map {
             

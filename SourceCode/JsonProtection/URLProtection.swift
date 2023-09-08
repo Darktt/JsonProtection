@@ -8,23 +8,27 @@
 import Foundation
 
 @propertyWrapper
-public struct URLProtection
+public
+struct URLProtection
 {
     // MARK: - Properties -
     
-    public var wrappedValue: URL?
+    public
+    var wrappedValue: URL?
     
     // MARK: - Methods -
     // MARK: Initial Method
     
-    public init() { }
+    public
+    init() { }
 }
 
 // MARK: - Conform Protocols -
 
 extension URLProtection: Decodable
 {
-    public init(from decoder: Decoder) throws
+    public
+    init(from decoder: Decoder) throws
     {
         let container: SingleValueDecodingContainer = try decoder.singleValueContainer()
         
@@ -37,7 +41,8 @@ extension URLProtection: Decodable
 
 extension URLProtection: CustomStringConvertible
 {
-    public var description: String
+    public
+    var description: String
     {
         self.wrappedValue.map {
             

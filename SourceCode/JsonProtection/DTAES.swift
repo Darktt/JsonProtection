@@ -9,23 +9,37 @@ import CommonCrypto
 import Foundation
 
 /// AES 128 encrypt and decrypt
-public class DTAES
+public
+class DTAES
 {
     // MARK: - Properties -
     
-    internal var operation: Operation
-    internal var options: Options
-    internal var key: Data = Data()
-    internal var iv: Data?
+    internal
+    var operation: Operation
     
-    private var contentString: String?
-    private var contentData: Data
-    private var ccOperation: CCOperation {
+    internal
+    var options: Options
+    
+    internal
+    var key: Data = Data()
+    
+    internal
+    var iv: Data?
+    
+    private
+    var contentString: String?
+    
+    private
+    var contentData: Data
+    
+    private
+    var ccOperation: CCOperation {
         
         return CCOperation(self.operation.rawValue)
     }
     
-    private var ccOptions: CCOptions {
+    private
+    var ccOptions: CCOptions {
         
         return CCOptions(self.options.rawValue)
     }
@@ -33,20 +47,23 @@ public class DTAES
     // MARK: - Methods -
     // MARK: Initial Method
     
-    internal convenience init(_ string: String)
+    internal
+    convenience init(_ string: String)
     {
         self.init(Data())
         self.contentString = string
     }
     
-    internal init(_ data: Data)
+    internal
+    init(_ data: Data)
     {
         self.operation = .encrypt
         self.options = []
         self.contentData = data
     }
     
-    internal convenience init(_ bytes: UnsafeRawPointer, length: Int)
+    internal
+    convenience init(_ bytes: UnsafeRawPointer, length: Int)
     {
         let contentData = Data(bytes: bytes, count: length)
         
@@ -55,7 +72,8 @@ public class DTAES
     
     // MARK: - internal Methods -
     
-    internal func setKey(_ keyString: String)
+    internal
+    func setKey(_ keyString: String)
     {
         guard let key: Data = keyString.data(using: .utf8) else {
             
@@ -65,7 +83,8 @@ public class DTAES
         self.key = key
     }
     
-    internal func setIv(_ ivString: String)
+    internal
+    func setIv(_ ivString: String)
     {
         guard let iv: Data = ivString.data(using: .utf8) else {
             
@@ -75,7 +94,8 @@ public class DTAES
         self.iv = iv
     }
     
-    internal func result() throws -> String
+    internal
+    func result() throws -> String
     {
         let data: Data = try self.result()
         
@@ -94,7 +114,8 @@ public class DTAES
         return result
     }
     
-    internal func result() throws -> Data
+    internal
+    func result() throws -> Data
     {
         if let contentString = self.contentString {
             
@@ -130,7 +151,8 @@ public class DTAES
 
 // MARK: - Private Methods -
 
-private extension DTAES
+private
+extension DTAES
 {
     func aes(withKey key: Array<UInt8>, iv: Array<UInt8>) throws -> Data
     {
@@ -223,7 +245,8 @@ extension DTAES
 
 extension DTAES.Error: LocalizedError
 {
-    internal var errorDescription: String?
+    internal
+    var errorDescription: String?
     {
         return "\(self)"
     }
@@ -231,7 +254,8 @@ extension DTAES.Error: LocalizedError
 
 extension DTAES.Error: CustomStringConvertible
 {
-    internal var description: String
+    internal
+    var description: String
     {
         let description: String!
         

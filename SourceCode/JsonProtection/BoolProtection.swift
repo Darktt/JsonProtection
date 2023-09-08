@@ -11,23 +11,27 @@ import Foundation
  Automatic convert to bool value.
 */
 @propertyWrapper
-public struct BoolProtection
+public
+struct BoolProtection
 {
     // MARK: - Properties -
     
-    public var wrappedValue: Bool?
+    public
+    var wrappedValue: Bool?
     
     // MARK: - Methods -
     // MARK: Initial Method
     
-    public init() { }
+    public
+    init() { }
 }
 
 // MARK: - Conform Protocols -
 
 extension BoolProtection: Decodable
 {
-    public init(from decoder: Decoder) throws
+    public
+    init(from decoder: Decoder) throws
     {
         let container: SingleValueDecodingContainer = try decoder.singleValueContainer()
         
@@ -76,7 +80,8 @@ extension BoolProtection: Decodable
 
 extension BoolProtection: CustomStringConvertible
 {
-    public var description: String
+    public
+    var description: String
     {
         self.wrappedValue.map {
             

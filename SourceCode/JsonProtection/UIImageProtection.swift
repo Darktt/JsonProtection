@@ -9,23 +9,27 @@ import Foundation
 import UIKit.UIImage
 
 @propertyWrapper
-public struct UIImageProtection
+public
+struct UIImageProtection
 {
     // MARK: - Properties -
     
-    public var wrappedValue: UIImage?
+    public
+    var wrappedValue: UIImage?
     
     // MARK: - Methods -
     // MARK: Initial Method
     
-    public init() { }
+    public
+    init() { }
 }
 
 // MARK: - Conform Protocols -
 
 extension UIImageProtection: Decodable
 {
-    public init(from decoder: Decoder) throws
+    public
+    init(from decoder: Decoder) throws
     {
         let container: SingleValueDecodingContainer = try decoder.singleValueContainer()
         let imageName = try container.decode(String.self)

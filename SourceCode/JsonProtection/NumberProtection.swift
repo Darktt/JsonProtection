@@ -9,7 +9,8 @@ import Foundation
 
 // MARK: - NumberType -
 
-public protocol NumberType
+public
+protocol NumberType
 {
     init?(_ source: String)
     
@@ -22,7 +23,8 @@ public protocol NumberType
 
 extension NumberType where Self: RawRepresentable, RawValue: NumberType
 {
-    public init?(_ source: String)
+    public
+    init?(_ source: String)
     {
         guard let rawValue = RawValue(source) else {
             
@@ -32,7 +34,8 @@ extension NumberType where Self: RawRepresentable, RawValue: NumberType
         self.init(rawValue: rawValue)
     }
     
-    public init?<T>(_ source: T) where T : BinaryInteger
+    public
+    init?<T>(_ source: T) where T : BinaryInteger
     {
         guard let rawValue = RawValue(source) else {
             
@@ -42,7 +45,8 @@ extension NumberType where Self: RawRepresentable, RawValue: NumberType
         self.init(rawValue: rawValue)
     }
     
-    public init?(_ source: Float)
+    public
+    init?(_ source: Float)
     {
         guard let rawValue = RawValue(source) else {
             
@@ -52,7 +56,8 @@ extension NumberType where Self: RawRepresentable, RawValue: NumberType
         self.init(rawValue: rawValue)
     }
     
-    public init?(_ source: Double)
+    public
+    init?(_ source: Double)
     {
         guard let rawValue = RawValue(source) else {
             
@@ -65,7 +70,8 @@ extension NumberType where Self: RawRepresentable, RawValue: NumberType
 
 extension Decimal: NumberType
 {
-    public init?(_ source: String)
+    public
+    init?(_ source: String)
     {
         guard let value = Double(source) else {
             
@@ -75,12 +81,14 @@ extension Decimal: NumberType
         self.init(value)
     }
     
-    public init?<T>(_ source: T) where T : BinaryInteger
+    public
+    init?<T>(_ source: T) where T : BinaryInteger
     {
         self.init(exactly: source)
     }
     
-    public init?(_ source: Float)
+    public
+    init?(_ source: Float)
     {
         self.init(Double(source))
     }
@@ -95,16 +103,19 @@ extension Double: NumberType { }
 // MARK: - NumberProtection -
 
 @propertyWrapper
-public struct NumberProtection<DecodeType>: MissingKeyProtecting where DecodeType: Decodable, DecodeType: NumberType
+public
+struct NumberProtection<DecodeType>: MissingKeyProtecting where DecodeType: Decodable, DecodeType: NumberType
 {
     // MARK: - Properties -
     
-    public var wrappedValue: DecodeType?
+    public
+    var wrappedValue: DecodeType?
     
     // MARK: - Methods -
     // MARK: Initial Method
     
-    public init(wrappedValue: DecodeType?)
+    public
+    init(wrappedValue: DecodeType?)
     {
         self.wrappedValue = wrappedValue
     }
@@ -112,7 +123,8 @@ public struct NumberProtection<DecodeType>: MissingKeyProtecting where DecodeTyp
 
 extension NumberProtection: Decodable
 {
-    public init(from decoder: Decoder) throws
+    public
+    init(from decoder: Decoder) throws
     {
         let container: SingleValueDecodingContainer = try decoder.singleValueContainer()
         
@@ -153,7 +165,8 @@ extension NumberProtection: Decodable
 
 extension NumberProtection: CustomStringConvertible
 {
-    public var description: String
+    public
+    var description: String
     {
         self.wrappedValue.map {
             
@@ -164,7 +177,8 @@ extension NumberProtection: CustomStringConvertible
 
 // MARK: - Optional Extension -
 
-private extension Optional
+private
+extension Optional
 {
     func _compactMap<T>(_ transfrom: (Wrapped) throws -> Optional<T>) rethrows -> Optional<T>
     {
