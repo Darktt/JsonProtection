@@ -22,9 +22,16 @@ extension DateObject
 {
     struct DateConfiguration: DateConfigurate
     {
-        static var dateFormat: String {
+        static 
+        var dateFormat: String {
             
             "yyyyMMddhhss"
+        }
+        
+        static 
+        var timeZone: TimeZone {
+            
+            TimeZone(abbreviation: "GMT+0800")!
         }
     }
 }

@@ -13,6 +13,8 @@ public
 protocol DateConfigurate
 {
     static var dateFormat: String { get }
+    
+    static var timeZone: TimeZone { get }
 }
 
 // MARK: - DateProtection -
@@ -42,6 +44,7 @@ extension DateProtection: Decodable
     {
         let formatter = DateFormatter.privateShare
         formatter.dateFormat = Configurate.dateFormat
+        formatter.timeZone = Configurate.timeZone
         let container: SingleValueDecodingContainer = try decoder.singleValueContainer()
         
         if let stringValue = try? container.decode(String.self) {
@@ -55,6 +58,16 @@ extension DateProtection: Decodable
         if let integerValue = try? container.decode(Int.self) {
             
             let stringValue = String(integerValue)
+            let date: Date? = formatter.date(from: stringValue)
+            
+            self.wrappedValue = date
+            
+            return
+        }
+        
+        if let doubleValue = try? container.decode(Double.self) {
+            
+            let stringValue = String(doubleValue)
             let date: Date? = formatter.date(from: stringValue)
             
             self.wrappedValue = date

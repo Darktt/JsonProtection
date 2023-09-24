@@ -153,6 +153,54 @@ extension Info
 }
 ```
 ---
+## DateProtection
+解決 json 資料裡的時間各式不統一的問題，
+並且避免 json 資料型態不正確的問題
+```json
+{
+    "updateTime": 1694102400,
+    "expiredDate": "202309080100"
+}
+```
+
+將要解析成日期陣列型態的 property 套上 `@DateProtection` 進行型態保護
+```json
+struct DateObject: Decodable
+{
+    let updateTime: Date?
+    
+    @DateProtection(configuration: DateConfiguration.self)
+    private(set)
+    var expiredDate: Date?
+}
+```
+
+並且繼承 DateConfigurate 提供相關設定
+```json
+extension DateObject
+{
+    struct DateConfiguration: DateConfigurate
+    {
+        static 
+        var dateFormat: String {
+            
+            "yyyyMMddhhss"
+        }
+        
+        static 
+        var timeZone: TimeZone {
+            
+            TimeZone(abbreviation: "GMT+0800")!
+        }
+    }
+}
+```
+
+> 支援型態：
+> * 字串
+> * 任何數字型態
+
+---
 ## UIImageProtection
 將 json 裡的字串解析成為 UIImage 型態
 > ⚠️：專案內需有同名的圖片檔案
