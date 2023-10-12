@@ -24,7 +24,7 @@ enum DateConfigurateOption
     /// 時間格式，時區未給的話，即預設系統時區
     case dateFormat(_ format: String, timeZone: TimeZone?)
     
-    /// 時間搓（基本單位為秒（Second））
+    /// 時間戳（基本單位為秒（Second））
     case secondsSince1970
     
     /// 時間戳（基本單位為毫秒（millisecond））

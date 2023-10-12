@@ -181,20 +181,19 @@ extension DateObject
 {
     struct DateConfiguration: DateConfigurate
     {
-        static 
-        var dateFormat: String {
+        static var option: DateConfigurateOption {
             
-            "yyyyMMddhhss"
-        }
-        
-        static 
-        var timeZone: TimeZone {
-            
-            TimeZone(abbreviation: "GMT+0800")!
+            .dateFormat("yyyyMMddhhss", timeZone: TimeZone(abbreviation: "GMT+0800"))
         }
     }
 }
 ```
+
+> 設定選項：
+> * 時間格式 (yyyyMMdd 等格式) 與時區
+> * 時間戳（基本單位為秒（Second））
+> * 時間戳（基本單位為毫秒（millisecond））
+> * iso8601（是否有毫秒）
 
 > 支援型態：
 > * 字串

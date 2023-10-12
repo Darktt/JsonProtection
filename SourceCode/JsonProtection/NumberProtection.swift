@@ -9,10 +9,12 @@ import Foundation
 
 // MARK: - NumberType -
 
-public
+public 
 protocol NumberType
 {
     init?(_ source: String)
+    
+    init?(_ source: Decimal)
     
     init?<T>(_ source: T) where T: BinaryInteger
     
@@ -25,6 +27,17 @@ extension NumberType where Self: RawRepresentable, RawValue: NumberType
 {
     public
     init?(_ source: String)
+    {
+        guard let rawValue = RawValue(source) else {
+            
+            return nil
+        }
+        
+        self.init(rawValue: rawValue)
+    }
+    
+    public
+    init?(_ source: Decimal)
     {
         guard let rawValue = RawValue(source) else {
             
@@ -73,58 +86,119 @@ extension Decimal: NumberType
     public
     init?(_ source: String)
     {
-        guard let value = Double(source) else {
-            
-            return nil
-        }
-        
-        self.init(value)
+        self.init(string: source)
+    }
+    
+    public
+    init?(_ source: Decimal)
+    {
+        self = source
     }
     
     public
     init?<T>(_ source: T) where T : BinaryInteger
     {
-        self.init(exactly: source)
+        let value = String(source)
+        
+        self.init(string: value)
     }
     
     public
     init?(_ source: Float)
     {
-        self.init(Double(source))
+        let value = String(source)
+        
+        self.init(string: value)
     }
 }
 
-extension Int: NumberType { }
+extension Int: NumberType
+{
+    public
+    init?(_ source: Decimal)
+    {
+        let number = NSDecimalNumber(decimal: source)
+        
+        self.init(truncating: number)
+    }
+}
 
-extension Float: NumberType { }
+extension Int32: NumberType
+{
+    public
+    init?(_ source: Decimal)
+    {
+        let number = NSDecimalNumber(decimal: source)
+        
+        self.init(truncating: number)
+    }
+}
 
-extension Double: NumberType { }
+extension UInt: NumberType
+{
+    public
+    init?(_ source: Decimal)
+    {
+        let number = NSDecimalNumber(decimal: source)
+        
+        self.init(truncating: number)
+    }
+}
+
+extension UInt32: NumberType
+{
+    public
+    init?(_ source: Decimal)
+    {
+        let number = NSDecimalNumber(decimal: source)
+        
+        self.init(truncating: number)
+    }
+}
+
+extension Float: NumberType
+{
+    public
+    init?(_ source: Decimal)
+    {
+        let number = NSDecimalNumber(decimal: source)
+        
+        self.init(truncating: number)
+    }
+}
+
+extension Double: NumberType
+{
+    public
+    init?(_ source: Decimal)
+    {
+        let number = NSDecimalNumber(decimal: source)
+        
+        self.init(truncating: number)
+    }
+}
 
 // MARK: - NumberProtection -
 
 @propertyWrapper
-public
-struct NumberProtection<DecodeType>: MissingKeyProtecting where DecodeType: Decodable, DecodeType: NumberType
+public struct NumberProtection<DecodeType>: MissingKeyProtecting where DecodeType: Decodable, DecodeType: NumberType
 {
     // MARK: - Properties -
     
-    public
-    var wrappedValue: DecodeType?
+    public var wrappedValue: DecodeType?
     
     // MARK: - Methods -
     // MARK: Initial Method
     
-    public
-    init(wrappedValue: DecodeType?)
+    public init(wrappedValue: DecodeType?)
     {
         self.wrappedValue = wrappedValue
     }
 }
 
-extension NumberProtection: Decodable
+extension NumberProtection
 {
-    public
-    init(from decoder: Decoder) throws
+    public init(from decoder: Decoder) throws
     {
         let container: SingleValueDecodingContainer = try decoder.singleValueContainer()
         
@@ -157,6 +231,11 @@ extension NumberProtection: Decodable
             wrappedValue = DecodeType(double)
         }
         
+        if let decimal = try? container.decode(Decimal.self), DecodeType.self == Decimal.self {
+            
+            wrappedValue = DecodeType(decimal)
+        }
+        
         return wrappedValue
     }
 }
@@ -165,30 +244,11 @@ extension NumberProtection: Decodable
 
 extension NumberProtection: CustomStringConvertible
 {
-    public
-    var description: String
+    public var description: String
     {
         self.wrappedValue.map {
             
             "\($0)"
         } ?? "nil"
-    }
-}
-
-// MARK: - Optional Extension -
-
-private
-extension Optional
-{
-    func _compactMap<T>(_ transfrom: (Wrapped) throws -> Optional<T>) rethrows -> Optional<T>
-    {
-        guard case let .some(unwrapped) = self else {
-            
-            return nil
-        }
-        
-        let result: Optional<T> = try transfrom(unwrapped)
-        
-        return result
     }
 }
