@@ -164,7 +164,7 @@ extension Info
 ```
 
 將要解析成日期陣列型態的 property 套上 `@DateProtection` 進行型態保護
-```json
+```swift
 struct DateObject: Decodable
 {
     let updateTime: Date?
@@ -176,7 +176,7 @@ struct DateObject: Decodable
 ```
 
 並且繼承 DateConfigurate 提供相關設定
-```json
+```swift
 extension DateObject
 {
     struct DateConfiguration: DateConfigurate
