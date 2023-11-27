@@ -98,9 +98,12 @@ extension Decimal: NumberType
     public
     init?<T>(_ source: T) where T : BinaryInteger
     {
-        let value = String(source)
+        guard let value = source as? Int else {
+            
+            return nil
+        }
         
-        self.init(string: value)
+        self.init(string: "\(value)")
     }
     
     public
