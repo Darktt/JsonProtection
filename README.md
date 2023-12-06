@@ -10,7 +10,7 @@
 
 * File > Swift Packages > Add Package Dependency
 * Add https://github.com/Darktt/JsonProtection
-* Select "Up to Next Major" with "1.0.4"
+* Select "Up to Next Major" with "1.0.5"
 
 ## 功能說明
 
