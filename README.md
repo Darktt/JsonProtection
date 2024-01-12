@@ -10,7 +10,7 @@
 
 * File > Swift Packages > Add Package Dependency
 * Add https://github.com/Darktt/JsonProtection
-* Select "Up to Next Major" with "1.0.5"
+* Select "Up to Next Major" with "1.0.6"
 
 ## 功能說明
 
@@ -259,6 +259,10 @@ struct AESObject: Decodable
     var url: String?
 }
 ```
+
+> 支援型態：
+> * 字串
+> * 字串陣列
 
 ---
 ## MultipleKeysProtection (未完成)

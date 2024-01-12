@@ -16,6 +16,13 @@ struct AESObject: Decodable
     var url: String?
 }
 
+struct AESObject2: Decodable
+{
+    @AESDecoder(adopter: AESObject.AESAdopting.self)
+    private(set)
+    var urls: Array<String>?
+}
+
 extension AESObject
 {
     struct AESAdopting: AESAdopter
@@ -71,5 +78,29 @@ final class AESDecoderTest: XCTestCase
         let expect: String = "https://www.apple.com"
         
         XCTAssertEqual(url, expect)
+    }
+    
+    func testDecoderStringArraySuccess() throws
+    {
+        // Arrange
+        self.jsonString = """
+        {
+            "urls": [
+                "0NhMzVQIsjShyNnck3huFVjVCcku2a+iAQVfY3CDrUw=",
+                "0NhMzVQIsjShyNnck3huFVjVCcku2a+iAQVfY3CDrUw="
+            ]
+        }
+        """
+        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonDecoder = JSONDecoder()
+        
+        // Act
+        let object = try jsonDecoder.decode(AESObject2.self, from: jsonData)
+        
+        // Assert
+        let urls: Array<String>? = object.urls
+        let expect: Array<String> = ["https://www.apple.com", "https://www.apple.com"]
+        
+        XCTAssertEqual(urls, expect)
     }
 }
