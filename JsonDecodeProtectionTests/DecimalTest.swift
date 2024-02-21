@@ -36,7 +36,7 @@ final class DecimalTest: XCTestCase
     {
         self.jsonString = """
         {
-            "value": 0.001
+            "value": 122.999999999999999
         }
         """
         
@@ -53,6 +53,6 @@ final class DecimalTest: XCTestCase
         // Assert
         let result: String = self.formatter.string(from: valueNumber)!
         
-        XCTAssertTrue(result == "0.001")
+        XCTAssertTrue(result == "122.999999999")
     }
 }

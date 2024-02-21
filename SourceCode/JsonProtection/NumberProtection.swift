@@ -118,6 +118,17 @@ extension Decimal: NumberType
 extension Int: NumberType
 {
     public
+    init?(_ source: String)
+    {
+        guard let decimal = Decimal(source) else {
+            
+            return nil
+        }
+        
+        self.init(decimal)
+    }
+    
+    public
     init?(_ source: Decimal)
     {
         let number = NSDecimalNumber(decimal: source)
@@ -128,6 +139,17 @@ extension Int: NumberType
 
 extension Int32: NumberType
 {
+    public
+    init?(_ source: String)
+    {
+        guard let decimal = Decimal(source) else {
+            
+            return nil
+        }
+        
+        self.init(decimal)
+    }
+    
     public
     init?(_ source: Decimal)
     {
@@ -140,6 +162,17 @@ extension Int32: NumberType
 extension UInt: NumberType
 {
     public
+    init?(_ source: String)
+    {
+        guard let decimal = Decimal(source) else {
+            
+            return nil
+        }
+        
+        self.init(decimal)
+    }
+    
+    public
     init?(_ source: Decimal)
     {
         let number = NSDecimalNumber(decimal: source)
@@ -150,6 +183,17 @@ extension UInt: NumberType
 
 extension UInt32: NumberType
 {
+    public
+    init?(_ source: String)
+    {
+        guard let decimal = Decimal(source) else {
+            
+            return nil
+        }
+        
+        self.init(decimal)
+    }
+    
     public
     init?(_ source: Decimal)
     {
