@@ -10,7 +10,7 @@
 
 * File > Swift Packages > Add Package Dependency
 * Add https://github.com/Darktt/JsonProtection
-* Select "Up to Next Major" with "1.0.7"
+* Select "Up to Next Major" with "1.1.0"
 
 ## 功能說明
 
@@ -123,6 +123,26 @@ struct Library: Decodable
 ```
 
 > 支援的數字型態：
+> * 與 NumberProtection 相同
+----
+## NumberArrayProtection
+處理 json 裡應為數字內用的 jsonArray 資料，但實際上是 String 型態的問題
+```json
+{
+    "dices": "[1, 5.2, 1.0]"
+}
+```
+
+將要解析成數字陣列型態的 property 套上 `@NumberArrayProtection` 進行型態保護
+```swift
+struct NumberArray: Decodable
+{
+    @NumberArrayProtection
+    var dices: [Double]?
+}
+```
+
+> 支援的數字型態 (陣列內的數字型態必定要相同，不能混入字串)：
 > * 與 NumberProtection 相同
 ----
 ## ObjectProtection

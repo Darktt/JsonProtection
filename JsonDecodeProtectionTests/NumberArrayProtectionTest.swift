@@ -1,8 +1,8 @@
 //
-//  ObjectProtectionTest.swift
+//  NumberArrayProtectionTest.swift
 //  JsonDecodeProtectionTests
 //
-//  Created by Darktt on 2022/12/5.
+//  Created by Eden on 2024/7/3.
 //
 
 import XCTest
@@ -15,7 +15,7 @@ struct SomeObject: Decodable
     @ObjectProtection
     var subObjects: Array<SubObject>?
     
-    @ObjectProtection
+    @NumberArrayProtection
     var dices: Array<Int>?
 }
 
@@ -31,7 +31,7 @@ extension SomeObject
     }
 }
 
-final class ObjectProtectionTest: XCTestCase
+final class NumberArrayProtectionTest: XCTestCase 
 {
     var jsonString: String!
     
@@ -46,13 +46,13 @@ final class ObjectProtectionTest: XCTestCase
         // Assert
     }
     
-    func testObjectProtectionSuccess() throws
+    func testNumberObjectProtectionSuccess() throws
     {
         // Arrange
         self.jsonString = """
         {
             "subObjects": "[{\\"name\\": \\"Jo\\", \\"number\\": 233}, {\\"name\\": \\"Ana\\", \\"number\\": 4565}]",
-            "dices": "[1,5,1]"
+            "dices": "[1, 5.2, 1.0]"
         }
         """
         let jsonData: Data = self.jsonString.data(using: .utf8)!
@@ -62,31 +62,8 @@ final class ObjectProtectionTest: XCTestCase
         let object = try jsonDecoder.decode(SomeObject.self, from: jsonData)
         
         // Assert
-        let actual: String? = object.subObjects?.last?.name
-        let expect: String = "Ana"
-        
-        XCTAssertEqual(actual, expect)
-    }
-    
-    func testObjectProtectionDicesSuccess() throws
-    {
-        // Arrange
-        self.jsonString = """
-        {
-            "subObjects": "[{\\"name\\": \\"Jo\\", \\"number\\": 233}, {\\"name\\": \\"Ana\\", \\"number\\": 4565}]",
-            "dices": "[1, 5, 1]"
-        }
-        """
-        
-        let jsonData: Data = self.jsonString.data(using: .utf8)!
-        let jsonDecoder = JSONDecoder()
-        
-        // Act
-        let object = try jsonDecoder.decode(SomeObject.self, from: jsonData)
-        
-        // Assert
-        let actual: Int? = object.dices?[1]
-        let expect: Int = 5
+        let actual: Array<Int>? = object.dices
+        let expect: Array<Int> = [1, 5, 1]
         
         XCTAssertEqual(actual, expect)
     }

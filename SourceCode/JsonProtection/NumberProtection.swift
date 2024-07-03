@@ -228,16 +228,19 @@ extension Double: NumberType
 // MARK: - NumberProtection -
 
 @propertyWrapper
-public struct NumberProtection<DecodeType>: MissingKeyProtecting where DecodeType: Decodable, DecodeType: NumberType
+public
+struct NumberProtection<DecodeType>: MissingKeyProtecting where DecodeType: Decodable, DecodeType: NumberType
 {
     // MARK: - Properties -
     
-    public var wrappedValue: DecodeType?
+    public
+    var wrappedValue: DecodeType?
     
     // MARK: - Methods -
     // MARK: Initial Method
     
-    public init(wrappedValue: DecodeType?)
+    public
+    init(wrappedValue: DecodeType?)
     {
         self.wrappedValue = wrappedValue
     }
@@ -245,7 +248,8 @@ public struct NumberProtection<DecodeType>: MissingKeyProtecting where DecodeTyp
 
 extension NumberProtection
 {
-    public init(from decoder: Decoder) throws
+    public 
+    init(from decoder: Decoder) throws
     {
         let container: SingleValueDecodingContainer = try decoder.singleValueContainer()
         
@@ -254,6 +258,7 @@ extension NumberProtection
         self.wrappedValue = wrappedValue
     }
     
+    private
     func decode(from container: SingleValueDecodingContainer) -> DecodeType?
     {
         var wrappedValue: DecodeType?

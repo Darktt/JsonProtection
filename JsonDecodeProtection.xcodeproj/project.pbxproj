@@ -32,6 +32,8 @@
 		F264CAD2293F1F4400AEC100 /* MultipleKeyProtection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F264CAD1293F1F4400AEC100 /* MultipleKeyProtection.swift */; };
 		F297055C29E3E69D003CF4B2 /* AESDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F297055B29E3E69D003CF4B2 /* AESDecoder.swift */; };
 		F297056029E3EF11003CF4B2 /* AESDecoderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F297055F29E3EF11003CF4B2 /* AESDecoderTest.swift */; };
+		F2B0B0032C34F3F800680EBE /* NumberArrayProtection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B0B0022C34F3F800680EBE /* NumberArrayProtection.swift */; };
+		F2B0B0052C34F5FF00680EBE /* NumberArrayProtectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B0B0042C34F5FF00680EBE /* NumberArrayProtectionTest.swift */; };
 		F2E188542AA9CCFD00E7F0B5 /* DateProtection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E188532AA9CCFD00E7F0B5 /* DateProtection.swift */; };
 		F2E188562AAAAF8C00E7F0B5 /* DateProtectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E188552AAAAF8C00E7F0B5 /* DateProtectionTest.swift */; };
 /* End PBXBuildFile section */
@@ -76,6 +78,8 @@
 		F264CAD1293F1F4400AEC100 /* MultipleKeyProtection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleKeyProtection.swift; sourceTree = "<group>"; };
 		F297055B29E3E69D003CF4B2 /* AESDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESDecoder.swift; sourceTree = "<group>"; };
 		F297055F29E3EF11003CF4B2 /* AESDecoderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESDecoderTest.swift; sourceTree = "<group>"; };
+		F2B0B0022C34F3F800680EBE /* NumberArrayProtection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberArrayProtection.swift; sourceTree = "<group>"; };
+		F2B0B0042C34F5FF00680EBE /* NumberArrayProtectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberArrayProtectionTest.swift; sourceTree = "<group>"; };
 		F2E188532AA9CCFD00E7F0B5 /* DateProtection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProtection.swift; sourceTree = "<group>"; };
 		F2E188552AAAAF8C00E7F0B5 /* DateProtectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProtectionTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,6 +145,7 @@
 				F2E188552AAAAF8C00E7F0B5 /* DateProtectionTest.swift */,
 				55F3EC812AD97D1800BAEABB /* DecimalTest.swift */,
 				552C7BE4293A1E3E00B4B5EE /* MissingKeyProtectionTest.swift */,
+				F2B0B0042C34F5FF00680EBE /* NumberArrayProtectionTest.swift */,
 				55A1DAA12940AF3A00244FE2 /* NumberProtectionTest.swift */,
 				F257F85A294C5CAA00FED754 /* NumbersProtectionTest.swift */,
 				559545A6293E12140060F43D /* ObjectProtectionTest.swift */,
@@ -166,6 +171,7 @@
 				F22A05A629E40BFD003D30C1 /* DTAES.swift */,
 				551D305329377FEB00C375F0 /* MissingKeyProtection.swift */,
 				F264CAD1293F1F4400AEC100 /* MultipleKeyProtection.swift */,
+				F2B0B0022C34F3F800680EBE /* NumberArrayProtection.swift */,
 				551D305229377FEB00C375F0 /* NumberProtection.swift */,
 				551D305429377FEB00C375F0 /* NumbersProtection.swift */,
 				551D305029377FEB00C375F0 /* ObjectProtection.swift */,
@@ -288,6 +294,7 @@
 				F297055C29E3E69D003CF4B2 /* AESDecoder.swift in Sources */,
 				551D301D29377FBA00C375F0 /* AppDelegate.swift in Sources */,
 				551D305929377FEB00C375F0 /* NumberProtection.swift in Sources */,
+				F2B0B0032C34F3F800680EBE /* NumberArrayProtection.swift in Sources */,
 				551D305A29377FEB00C375F0 /* MissingKeyProtection.swift in Sources */,
 				551D301F29377FBA00C375F0 /* SceneDelegate.swift in Sources */,
 				551D305C29377FEB00C375F0 /* URLProtection.swift in Sources */,
@@ -302,6 +309,7 @@
 				F257F85D294C5E4600FED754 /* URLProtectionTest.swift in Sources */,
 				F297056029E3EF11003CF4B2 /* AESDecoderTest.swift in Sources */,
 				559545A7293E12140060F43D /* ObjectProtectionTest.swift in Sources */,
+				F2B0B0052C34F5FF00680EBE /* NumberArrayProtectionTest.swift in Sources */,
 				F257F85B294C5CAA00FED754 /* NumbersProtectionTest.swift in Sources */,
 				55A1DAA22940AF3A00244FE2 /* NumberProtectionTest.swift in Sources */,
 				55F3EC822AD97D1800BAEABB /* DecimalTest.swift in Sources */,

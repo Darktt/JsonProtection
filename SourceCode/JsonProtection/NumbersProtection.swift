@@ -26,6 +26,8 @@ struct NumbersProtection<Element>: MissingKeyProtecting where Element: Decodable
     }
 }
 
+// MARK: - Conform Protocol -
+
 extension NumbersProtection: Decodable
 {
     public
@@ -71,8 +73,6 @@ extension NumbersProtection: Decodable
         return wrappedValue
     }
 }
-
-// MARK: - Conform Protocol -
 
 extension NumbersProtection: CustomStringConvertible
 {
