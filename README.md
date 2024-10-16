@@ -1,5 +1,5 @@
 # JsonProtection
-[![Swift-5.8](https://img.shields.io/badge/Swift-5.8-red.svg?style=plastic&logo=Swift&logoColor=white&link=)](https://developer.apple.com/swift/)
+[![Swift-6.0](https://img.shields.io/badge/Swift-6.0-red.svg?style=plastic&logo=Swift&logoColor=white&link=)](https://developer.apple.com/swift/)
 [![example workflow](https://github.com/Darktt/JsonProtection/actions/workflows/main.yml/badge.svg)]()
 
 處理後端提供各種神奇 Json 資料，而做的解析保護
@@ -10,7 +10,7 @@
 
 * File > Swift Packages > Add Package Dependency
 * Add https://github.com/Darktt/JsonProtection
-* Select "Up to Next Major" with "1.1.0"
+* Select "Up to Next Major" with "1.2.0"
 
 ## 功能說明
 

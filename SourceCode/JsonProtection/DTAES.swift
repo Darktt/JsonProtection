@@ -219,7 +219,7 @@ extension DTAES
     }
     
     public
-    struct Options: OptionSet
+    struct Options: OptionSet, Sendable
     {
         public typealias RawValue = UInt8
         
