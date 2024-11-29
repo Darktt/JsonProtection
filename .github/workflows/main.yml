@@ -8,9 +8,9 @@ on:
 jobs:
   build:
     
-    runs-on: macos-15.1.1
+    runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_16.0.app && /usr/bin/xcodebuild -version
       - name: Run tests
