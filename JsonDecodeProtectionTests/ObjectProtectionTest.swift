@@ -21,13 +21,19 @@ struct SomeObject: Decodable
 
 extension SomeObject
 {
-    struct SubObject: Decodable
+    struct SubObject: Decodable, Equatable
     {
         private(set)
         var name: String?
         
         private(set)
         var number: Int?
+        
+        static
+        func == (lhs: SomeObject.SubObject, rhs: SomeObject.SubObject) -> Bool
+        {
+            lhs.name == rhs.name && lhs.number == rhs.number
+        }
     }
 }
 
@@ -87,6 +93,29 @@ final class ObjectProtectionTest: XCTestCase
         // Assert
         let actual: Int? = object.dices?[1]
         let expect: Int = 5
+        
+        XCTAssertEqual(actual, expect)
+    }
+    
+    func testObjectProtectionWithEmptyString() throws
+    {
+        // Arrange
+        self.jsonString = """
+        {
+            "subObjects": "",
+            "dices": "[1, 5, 1]"
+        }
+        """
+        
+        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonDecoder = JSONDecoder()
+        
+        // Act
+        let object = try jsonDecoder.decode(SomeObject.self, from: jsonData)
+        
+        // Assert
+        let actual: Array<SomeObject.SubObject>? = object.subObjects
+        let expect: Array<SomeObject.SubObject>? = nil
         
         XCTAssertEqual(actual, expect)
     }

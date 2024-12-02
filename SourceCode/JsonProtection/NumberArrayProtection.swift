@@ -26,6 +26,27 @@ struct NumberArrayProtection<Element> where Element: Decodable, Element: NumberT
     init() { }
 }
 
+// MARK: - Private Methods -
+
+private
+extension NumberArrayProtection
+{
+    private
+    func decode(with string: String) throws -> Array<Element>?
+    {
+        guard !string.isEmpty,
+                let data: Data = string.data(using: .utf8) else {
+            
+            return nil
+        }
+        
+        let jsonDecoder = JSONDecoder()
+        let wrapperValue = try jsonDecoder.decode(NumbersProtection<Element>.self, from: data)
+        
+        return wrapperValue.wrappedValue
+    }
+}
+
 // MARK: - Conform Protocols -
 
 extension NumberArrayProtection: Decodable
@@ -45,20 +66,6 @@ extension NumberArrayProtection: Decodable
         let wrappedValue: Array<Element>? = try self.decode(with: jsonString)
         
         self.wrappedValue = wrappedValue
-    }
-    
-    private
-    func decode(with string: String) throws -> Array<Element>?
-    {
-        guard let data: Data = string.data(using: .utf8) else {
-            
-            return nil
-        }
-        
-        let jsonDecoder = JSONDecoder()
-        let wrapperValue = try jsonDecoder.decode(NumbersProtection<Element>.self, from: data)
-        
-        return wrapperValue.wrappedValue
     }
 }
 

@@ -67,4 +67,26 @@ final class NumberArrayProtectionTest: XCTestCase
         
         XCTAssertEqual(actual, expect)
     }
+    
+    func testNumberObjectProtectionWithEmptyString() throws
+    {
+        // Arrange
+        self.jsonString = """
+        {
+            "subObjects": "[{\\"name\\": \\"Jo\\", \\"number\\": 233}, {\\"name\\": \\"Ana\\", \\"number\\": 4565}]",
+            "dices": ""
+        }
+        """
+        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonDecoder = JSONDecoder()
+        
+        // Act
+        let object = try jsonDecoder.decode(SomeObject.self, from: jsonData)
+        
+        // Assert
+        let actual: Array<Int>? = object.dices
+        let expect: Array<Int>? = nil
+        
+        XCTAssertEqual(actual, expect)
+    }
 }

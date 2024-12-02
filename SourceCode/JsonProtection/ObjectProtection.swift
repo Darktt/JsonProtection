@@ -88,7 +88,8 @@ extension ObjectProtection
 {
     func decode(with string: String) throws -> Value?
     {
-        guard let data: Data = string.data(using: .utf8) else {
+        guard !string.isEmpty,
+              let data: Data = string.data(using: .utf8) else {
             
             return nil
         }
