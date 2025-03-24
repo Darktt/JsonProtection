@@ -2,6 +2,8 @@
 [![Swift-6.0](https://img.shields.io/badge/Swift-6.0-red.svg?style=plastic&logo=Swift&logoColor=white&link=)](https://developer.apple.com/swift/)
 [![example workflow](https://github.com/Darktt/JsonProtection/actions/workflows/main.yml/badge.svg)]()
 
+[English](/en/README.md)
+
 處理後端提供各種神奇 Json 資料，而做的解析保護
 
 ## 安裝方法
@@ -15,7 +17,7 @@
 ## 功能說明
 
 ### BoolProtection
-處理 json 資料應該為**布林值**，但是實際上並**非布林值**的問題
+處理 json 資料應該為**布林值**，但是實際上並非**布林值**的問題
 ```json
 {
     "true": true,
@@ -40,6 +42,7 @@ struct BoolObject: Decodable
 > * false: 0、“false”、“no”
 
 ---
+
 ### MissingKeyProtection
 保護 json key 時有時無的情況
 ```json
@@ -70,6 +73,7 @@ struct UserData: Decodable
 ```
 
 ----
+
 ### NumberProtection
 處理 json 資料應該為**數字型態**，但是實際上可能為**字串型態**的問題
 > 包含 MissingKeyProtection 的功能
@@ -105,7 +109,8 @@ struct BikeLocation: Decodable
     (需套用 NumberType 這個 protocol)
 
 ---
-## NumbersProtection
+
+### NumbersProtection
 處理 json 資料應該為**數字陣列型態**，但是實際上可能為**字串陣列型態**的問題
 ```json
 {
@@ -124,8 +129,10 @@ struct Library: Decodable
 
 > 支援的數字型態：
 > * 與 NumberProtection 相同
+
 ----
-## NumberArrayProtection
+
+### NumberArrayProtection
 處理 json 裡應為數字內用的 jsonArray 資料，但實際上是 String 型態的問題
 ```json
 {
@@ -144,8 +151,10 @@ struct NumberArray: Decodable
 
 > 支援的數字型態 (陣列內的數字型態必定要相同，不能混入字串)：
 > * 與 NumberProtection 相同
+
 ----
-## ObjectProtection
+
+### ObjectProtection
 處理 json 裡應為 jsonObject 資料，但實際上是 String 型態的問題
 ```json
 {
@@ -172,8 +181,10 @@ extension Info
     }
 }
 ```
+
 ---
-## DateProtection
+
+### DateProtection
 解決 json 資料裡的時間各式不統一的問題，
 並且避免 json 資料型態不正確的問題
 ```json
@@ -220,12 +231,14 @@ extension DateObject
 > * 任何數字型態
 
 ---
-## UIImageProtection
+
+### UIImageProtection
 將 json 裡的字串解析成為 UIImage 型態
 > ⚠️：專案內需有同名的圖片檔案
 
 ---
-## URLProtection
+
+### URLProtection
 避免 json 裡的字串為空時，解析成 URL 型態會解析失敗的問題
 ```json
 {
@@ -247,7 +260,8 @@ struct URLObject: Decodable
 ```
 
 ---
-## AESDecoder
+
+### AESDecoder
 這是唯一不做保護的功能，僅做解析 Json 資料時同時做 AES256 解密
 
 使用需繼承 AESAdopter 提供相關解密資訊
@@ -285,5 +299,12 @@ struct AESObject: Decodable
 > * 字串陣列
 
 ---
-## MultipleKeysProtection (未完成)
+### MultipleKeysProtection (未完成)
 保護同變數在不同 json 資料情境下，有複數的 key 存在的問題
+
+## 作者
+Created by Darktt.
+
+## License  
+
+This project is licensed under the MIT License.
