@@ -11,43 +11,39 @@ import JsonDecodeProtection
 
 struct AESObject: Decodable
 {
-    @AESDecoder(adopter: AESObject.AESAdopting.self)
+    @AESDecoder(adopter: AESAdopting.self)
     private(set)
     var url: String?
 }
 
 struct AESObject2: Decodable
 {
-    @AESDecoder(adopter: AESObject.AESAdopting.self)
+    @AESDecoder(adopter: AESAdopting.self)
     private(set)
     var urls: Array<String>?
 }
 
-extension AESObject
+struct AESAdopting: AESAdopter
 {
-    struct AESAdopting: AESAdopter
-    {
-        static var key: String {
-            
-            "MnoewgUZrgt5Rk08MtESwHvgzY7ElaEq"
-        }
+    static var key: String {
         
-        static var iv: String? {
-            
-            "rtCG5mdgtlCtbyI4"
-        }
+        "MnoewgUZrgt5Rk08MtESwHvgzY7ElaEq"
+    }
+    
+    static var iv: String? {
         
-        static var options: DTAES.Options {
-            
-            [.pkc7Padding, .zeroPadding]
-        }
+        "rtCG5mdgtlCtbyI4"
+    }
+    
+    static var options: DTAES.Options {
+        
+        [.pkc7Padding, .zeroPadding]
     }
 }
 
-final class AESDecoderTest: XCTestCase
+final
+class AESDecoderTest: XCTestCase
 {
-    var jsonString: String!
-    
     override func setUpWithError() throws
     {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -62,12 +58,12 @@ final class AESDecoderTest: XCTestCase
     func testAESDecoderSuccess() throws
     {
         // Arrange
-        self.jsonString = """
+        let jsonString: String = """
         {
             "url": "0NhMzVQIsjShyNnck3huFVjVCcku2a+iAQVfY3CDrUw="
         }
         """
-        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonData: Data = jsonString.data(using: .utf8)!
         let jsonDecoder = JSONDecoder()
         
         // Act
@@ -83,7 +79,7 @@ final class AESDecoderTest: XCTestCase
     func testDecoderStringArraySuccess() throws
     {
         // Arrange
-        self.jsonString = """
+        let jsonString: String = """
         {
             "urls": [
                 "0NhMzVQIsjShyNnck3huFVjVCcku2a+iAQVfY3CDrUw=",
@@ -91,7 +87,7 @@ final class AESDecoderTest: XCTestCase
             ]
         }
         """
-        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonData: Data = jsonString.data(using: .utf8)!
         let jsonDecoder = JSONDecoder()
         
         // Act

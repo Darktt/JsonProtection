@@ -160,10 +160,12 @@ extension DTAES
         var contentData: Data = self.contentData
         let hasZeroPadding: Bool = self.options.contains(.zeroPadding)
         
+        var currentOptions = self.options
+        
         if hasZeroPadding && self.operation == .encrypt {
             
-            // Reset to ECB mode.
-            self.options = [.ecbMode]
+            // Reset to ECB mode for local use only
+            currentOptions = [.ecbMode]
             
             // Add zero padding.
             var zeroByte: UInt8 = 0x00
@@ -185,7 +187,7 @@ extension DTAES
         
         let cryptStatus: CCCryptorStatus = CCCrypt(self.ccOperation,
                                                    algorithm,
-                                                   self.ccOptions,
+                                                   CCOptions(currentOptions.rawValue), // 使用局部變數
                                                    key,
                                                    key.count,
                                                    iv,

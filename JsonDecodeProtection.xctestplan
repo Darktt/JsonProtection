@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "E827B921-5773-4A2F-A515-1F053030350A",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:JsonDecodeProtection.xcodeproj",
+      "identifier" : "551D301829377FBA00C375F0",
+      "name" : "JsonDecodeProtection"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:JsonDecodeProtection.xcodeproj",
+        "identifier" : "F2432DD92939D5D100B1E010",
+        "name" : "JsonDecodeProtectionTests"
+      }
+    }
+  ],
+  "version" : 1
+}

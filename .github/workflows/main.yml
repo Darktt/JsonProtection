@@ -11,9 +11,23 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
+
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_16.4.app && /usr/bin/xcodebuild -version
 
-      - name: Run tests
-        run: xcodebuild test -scheme JsonDecodeProtection -project JsonDecodeProtection.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.6' | xcpretty && exit ${PIPESTATUS[0]}
+      - name: Build for iOS
+        uses: sersoft-gmbh/xcodebuild-action@v1
+        with:
+          project: JsonDecodeProtection.xcodeproj
+          scheme: JsonDecodeProtection
+          destination: platform=iOS Simulator,name=iPhone 16,OS=18.6
+          action: build 
+
+      - name: Runing tests for iOS
+        uses: sersoft-gmbh/xcodebuild-action@v1
+        with:
+          project: JsonDecodeProtection.xcodeproj
+          scheme: JsonDecodeProtection
+          destination: platform=iOS Simulator,name=iPhone 16,OS=18.6
+          action: test
  
