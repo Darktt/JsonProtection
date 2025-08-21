@@ -181,13 +181,13 @@ extension DTAES
         }
         
         let bufferSize: Int = contentData.count + kCCBlockSizeAES128
-        var buffer: Array<UInt8> = []
+        var buffer: Array<UInt8> = Array(repeating: 0, count: bufferSize)
         
         var numberBytesCrypto: Int = 0
         
         let cryptStatus: CCCryptorStatus = CCCrypt(self.ccOperation,
                                                    algorithm,
-                                                   CCOptions(currentOptions.rawValue), // 使用局部變數
+                                                   CCOptions(currentOptions.rawValue),
                                                    key,
                                                    key.count,
                                                    iv,

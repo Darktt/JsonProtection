@@ -81,7 +81,7 @@ extension AESDecoder
 
 // MARK: - Conform Protocols -
 
-extension AESDecoder: Decodable 
+extension AESDecoder: Decodable
 {
     public
     init(from decoder: Decoder) throws
@@ -99,7 +99,7 @@ extension AESDecoder: Decodable
         
         if let encryptedArray = encryptedValue as? Array<String> {
             
-            let decodeValue: Array<String> = try self.decodeArray(encryptedArray)
+            let decodeValue: Array<String>? = try? self.decodeArray(encryptedArray)
             self.wrappedValue = decodeValue as? Value
             
             return
