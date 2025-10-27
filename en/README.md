@@ -1,5 +1,5 @@
 # JsonProtection  
-[![Swift-6.0](https://img.shields.io/badge/Swift-6.0-red.svg?style=plastic&logo=Swift&logoColor=white&link=)](https://developer.apple.com/swift/)
+[![Swift-6.0](https://img.shields.io/badge/Swift-6.2-red.svg?style=plastic&logo=Swift&logoColor=white&link=)](https://developer.apple.com/swift/)
 [![example workflow](https://github.com/Darktt/JsonProtection/actions/workflows/main.yml/badge.svg)]()
 
 A solution for handling and protecting the parsing of various unusual JSON data provided by the backend.
@@ -10,7 +10,7 @@ Using Swift Package Manager:
 
 1. Go to **File > Swift Packages > Add Package Dependency**  
 2. Add `https://github.com/Darktt/JsonProtection`  
-3. Select **"Up to Next Major"** with version **"1.2.1"**  
+3. Select **"Up to Next Major"** with version **"1.2.2"**  
 
 ## Features  
 
