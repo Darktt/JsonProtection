@@ -7,7 +7,7 @@
 
 import XCTest
 @testable
-import JsonDecodeProtection
+import JsonProtection
 
 struct NumberObject: Decodable
 {

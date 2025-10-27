@@ -6,6 +6,9 @@
 //
 
 import Foundation
+
+#if canImport(UIKit)
+
 import UIKit.UIImage
 
 @propertyWrapper
@@ -49,3 +52,5 @@ extension UIImageProtection: CustomStringConvertible
         } ?? "nil"
     }
 }
+
+#endif // canImport(UIKit)

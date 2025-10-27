@@ -5,6 +5,8 @@
 //  Copyright © 2018 Darktt. All rights reserved.
 //
 
+#if canImport(CommonCrypto
+)
 import CommonCrypto
 import Foundation
 
@@ -282,3 +284,5 @@ private extension Data
         return Array<UInt8>(self)
     }
 }
+
+#endif // canImport(CommonCrypto)

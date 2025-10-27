@@ -10,24 +10,17 @@ jobs:
     runs-on: macos-15
     
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Select Xcode
-        run: sudo xcode-select -switch /Applications/Xcode_16.4.app && /usr/bin/xcodebuild -version
-
-      - name: Build for iOS
-        uses: mxcl/xcodebuild@v3
+      - name: Setup Swift
+        uses: swift-actions/setup-swift@v2
         with:
-          platform: iOS
-          xcode: ^16.4
-          scheme: JsonDecodeProtection
-          action: build
+          swift-version: "6.1.0"
 
-      - name: Runing tests for iOS
-        uses: mxcl/xcodebuild@v3
-        with:
-          platform: iOS
-          xcode: ^16.4
-          scheme: JsonDecodeProtection
-          action: test
+      - name: Build package
+        run: swift build
+
+      - name: Run tests
+        run: swift test
  

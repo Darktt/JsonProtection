@@ -5,8 +5,6 @@
 //  Copyright © 2022 Darktt. All rights reserved.
 //
 
-import Foundation
-
 @propertyWrapper
 public
 struct MultipleKeysProtection<DecodeType>: Decodable where DecodeType: Decodable

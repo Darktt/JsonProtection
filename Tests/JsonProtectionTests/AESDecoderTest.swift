@@ -7,7 +7,9 @@
 
 import XCTest
 @testable
-import JsonDecodeProtection
+import JsonProtection
+
+#if canImport(CommonCrypto)
 
 struct AESObject: Decodable
 {
@@ -107,3 +109,5 @@ class AESDecoderTest: XCTestCase
         XCTAssertEqual(urls, expect)
     }
 }
+
+#endif // canImport(CommonCrypto)

@@ -5,8 +5,6 @@
 //  Copyright © 2023 Darktt. All rights reserved.
 //
 
-import Foundation
-
 // MARK: - AESAdopter -
 
 public

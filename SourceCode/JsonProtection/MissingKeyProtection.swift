@@ -5,8 +5,6 @@
 //  Copyright © 2022 Darktt. All rights reserved.
 //
 
-import Foundation
-
 // MARK: - MissingKeyProtecting -
 
 public protocol MissingKeyProtecting: Decodable
