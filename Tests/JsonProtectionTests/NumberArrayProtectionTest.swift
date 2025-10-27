@@ -1,11 +1,12 @@
 //
 //  NumberArrayProtectionTest.swift
-//  JsonDecodeProtectionTests
+//  JsonProtectionTests
 //
-//  Created by Eden on 2024/7/3.
+//  Created by Darktt on 2024/7/3.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable
 import JsonProtection
 
@@ -31,31 +32,19 @@ extension SomeObject
     }
 }
 
-final class NumberArrayProtectionTest: XCTestCase 
+struct NumberArrayProtectionTest
 {
-    var jsonString: String!
-    
-    override func setUpWithError() throws
-    {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // Arrange
-        
-        // Act
-        
-        // Assert
-    }
-    
-    func testNumberObjectProtectionSuccess() throws
+    @Test("數字陣列保護應該正確解碼數字陣列")
+    func numberObjectProtectionSuccess() throws
     {
         // Arrange
-        self.jsonString = """
+        let jsonString = """
         {
             "subObjects": "[{\\"name\\": \\"Jo\\", \\"number\\": 233}, {\\"name\\": \\"Ana\\", \\"number\\": 4565}]",
             "dices": "[1, 5.2, 1.0]"
         }
         """
-        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonData: Data = jsonString.data(using: .utf8)!
         let jsonDecoder = JSONDecoder()
         
         // Act
@@ -65,19 +54,20 @@ final class NumberArrayProtectionTest: XCTestCase
         let actual: Array<Int>? = object.dices
         let expect: Array<Int> = [1, 5, 1]
         
-        XCTAssertEqual(actual, expect)
+        #expect(actual == expect)
     }
     
-    func testNumberObjectProtectionWithEmptyString() throws
+    @Test("數字陣列保護在遇到空字串時應該回傳 nil")
+    func numberObjectProtectionWithEmptyString() throws
     {
         // Arrange
-        self.jsonString = """
+        let jsonString = """
         {
             "subObjects": "[{\\"name\\": \\"Jo\\", \\"number\\": 233}, {\\"name\\": \\"Ana\\", \\"number\\": 4565}]",
             "dices": ""
         }
         """
-        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonData: Data = jsonString.data(using: .utf8)!
         let jsonDecoder = JSONDecoder()
         
         // Act
@@ -87,6 +77,6 @@ final class NumberArrayProtectionTest: XCTestCase
         let actual: Array<Int>? = object.dices
         let expect: Array<Int>? = nil
         
-        XCTAssertEqual(actual, expect)
+        #expect(actual == expect)
     }
 }

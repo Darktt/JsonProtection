@@ -5,7 +5,8 @@
 //  Created by Darktt on 2023/10/13.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable
 import JsonProtection
 
@@ -15,44 +16,28 @@ struct TestObject: Decodable
     var value: Decimal?
 }
 
-final class DecimalTest: XCTestCase 
+struct DecimalTest
 {
-    var jsonString: String!
-    
-    var formatter: NumberFormatter = NumberFormatter()
-    
-    override func setUpWithError() throws
+    @Test("小數保護應該正確處理浮點數精度")
+    func float0_0001AndRoundDown() throws
     {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
         // Arrange
-        
-        // Act
-        
-        // Assert
-    }
-    
-    func testFloat0_0001AndRoundDown() throws
-    {
-        self.jsonString = """
+        let jsonString = """
         {
             "value": 122.999999999999999
         }
         """
         
-        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonData: Data = jsonString.data(using: .utf8)!
         let jsonDecoder = JSONDecoder()
         
         // Act
         let object = try jsonDecoder.decode(TestObject.self, from: jsonData)
-        let valueNumber = NSDecimalNumber(decimal: object.value ?? .zero)
-        self.formatter.minimumFractionDigits = 3
-        self.formatter.maximumFractionDigits = 9
-        self.formatter.roundingMode = .down
+        let value: Decimal = object.value ?? .zero
         
         // Assert
-        let result: String = self.formatter.string(from: valueNumber)!
+        let result: String = "\(value)"
         
-        XCTAssertTrue(result == "122.999999999")
+        #expect(result == "122.999999999999999")
     }
 }

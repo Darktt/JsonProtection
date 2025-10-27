@@ -5,8 +5,8 @@
 //  Copyright © 2018 Darktt. All rights reserved.
 //
 
-#if canImport(CommonCrypto
-)
+#if canImport(CommonCrypto)
+
 import CommonCrypto
 import Foundation
 

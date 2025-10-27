@@ -1,11 +1,12 @@
 //
 //  ObjectProtectionTest.swift
-//  JsonDecodeProtectionTests
+//  JsonProtectionTests
 //
 //  Created by Darktt on 2022/12/5.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable
 import JsonProtection
 
@@ -37,31 +38,19 @@ extension SomeObject
     }
 }
 
-final class ObjectProtectionTest: XCTestCase
+struct ObjectProtectionTest
 {
-    var jsonString: String!
-    
-    override func setUpWithError() throws
-    {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // Arrange
-        
-        // Act
-        
-        // Assert
-    }
-    
-    func testObjectProtectionSuccess() throws
+    @Test("物件保護在有效 JSON 字串時應該成功解碼")
+    func objectProtectionSuccess() throws
     {
         // Arrange
-        self.jsonString = """
+        let jsonString = """
         {
             "subObjects": "[{\\"name\\": \\"Jo\\", \\"number\\": 233}, {\\"name\\": \\"Ana\\", \\"number\\": 4565}]",
             "dices": "[1,5,1]"
         }
         """
-        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonData: Data = jsonString.data(using: .utf8)!
         let jsonDecoder = JSONDecoder()
         
         // Act
@@ -71,20 +60,21 @@ final class ObjectProtectionTest: XCTestCase
         let actual: String? = object.subObjects?.last?.name
         let expect: String = "Ana"
         
-        XCTAssertEqual(actual, expect)
+        #expect(actual == expect)
     }
     
-    func testObjectProtectionDicesSuccess() throws
+    @Test("物件保護應該正確解碼骰子陣列中的數字")
+    func objectProtectionDicesSuccess() throws
     {
         // Arrange
-        self.jsonString = """
+        let jsonString = """
         {
             "subObjects": "[{\\"name\\": \\"Jo\\", \\"number\\": 233}, {\\"name\\": \\"Ana\\", \\"number\\": 4565}]",
             "dices": "[1, 5, 1]"
         }
         """
         
-        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonData: Data = jsonString.data(using: .utf8)!
         let jsonDecoder = JSONDecoder()
         
         // Act
@@ -94,20 +84,21 @@ final class ObjectProtectionTest: XCTestCase
         let actual: Int? = object.dices?[1]
         let expect: Int = 5
         
-        XCTAssertEqual(actual, expect)
+        #expect(actual == expect)
     }
     
-    func testObjectProtectionWithEmptyString() throws
+    @Test("物件保護在遇到空字串時應該回傳 nil")
+    func objectProtectionWithEmptyString() throws
     {
         // Arrange
-        self.jsonString = """
+        let jsonString = """
         {
             "subObjects": "",
             "dices": "[1, 5, 1]"
         }
         """
         
-        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonData: Data = jsonString.data(using: .utf8)!
         let jsonDecoder = JSONDecoder()
         
         // Act
@@ -117,6 +108,6 @@ final class ObjectProtectionTest: XCTestCase
         let actual: Array<SomeObject.SubObject>? = object.subObjects
         let expect: Array<SomeObject.SubObject>? = nil
         
-        XCTAssertEqual(actual, expect)
+        #expect(actual == expect)
     }
 }

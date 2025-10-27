@@ -5,6 +5,8 @@
 //  Copyright © 2023 Darktt. All rights reserved.
 //
 
+#if canImport(CommonCrypto)
+
 // MARK: - AESAdopter -
 
 public
@@ -104,3 +106,5 @@ extension AESDecoder: Decodable
         }
     }
 }
+
+#endif // canImport(CommonCrypto)

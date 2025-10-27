@@ -1,11 +1,12 @@
 //
 //  NumbersProtectionTest.swift
-//  JsonDecodeProtectionTests
+//  JsonProtectionTests
 //
-//  Created by Eden on 2022/12/16.
+//  Created by Darktt on 2022/12/16.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable
 import JsonProtection
 
@@ -16,30 +17,18 @@ struct NumbersObject: Decodable
     var index: Array<Int>?
 }
 
-final class NumbersProtectionTest: XCTestCase
+struct NumbersProtectionTest
 {
-    var jsonString: String!
-    
-    override func setUpWithError() throws
-    {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // Arrange
-        
-        // Act
-        
-        // Assert
-    }
-    
-    func testNumbersProtectionSuccess() throws
+    @Test("數字們保護應該正確解碼字串數字陣列")
+    func numbersProtectionSuccess() throws
     {
         // Arrange
-        self.jsonString = """
+        let jsonString = """
         {
             "index": ["10", "20", "50", "100"]
         }
         """
-        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonData: Data = jsonString.data(using: .utf8)!
         let jsonDecoder = JSONDecoder()
         
         // Act
@@ -49,6 +38,6 @@ final class NumbersProtectionTest: XCTestCase
         let actual: Int? = object.index.map({ $0[2] })
         let expect: Int = 50
         
-        XCTAssertEqual(actual, expect)
+        #expect(actual == expect)
     }
 }

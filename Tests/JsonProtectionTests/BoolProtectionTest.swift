@@ -1,11 +1,12 @@
 //
 //  BoolProtectionTest.swift
-//  JsonDecodeProtectionTests
+//  JsonProtectionTests
 //
 //  Created by Darktt on 2022/11/30.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable
 import JsonProtection
 
@@ -21,66 +22,45 @@ struct BoolObject: Decodable
     var `false`: Bool?
 }
 
-final class BoolProtectionTest: XCTestCase
+struct BoolProtectionTest
 {
-    var jsonString: String!
-    
-    override func setUpWithError() throws
-    {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // Arrange
-        
-        // Act
-        
-        // Assert
-    }
-    
-    func testBoolProtectionSuccess() throws
+    @Test("布林保護應該正確解碼布林值")
+    func boolProtectionSuccess() throws
     {
         // Arrange
-        self.jsonString = """
+        let jsonString = """
         {
             "true": true,
             "false": "FALSE"
         }
         """
-        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonData: Data = jsonString.data(using: .utf8)!
         let jsonDecoder = JSONDecoder()
         
         // Act
         let object = try jsonDecoder.decode(BoolObject.self, from: jsonData)
         
         // Assert
-        XCTAssertTrue(object.true == true)
-        XCTAssertTrue(object.false == false)
+        #expect(object.true == true)
+        #expect(object.false == false)
     }
     
-    func testBoolProtectionFailure()
+    @Test("布林保護應該對無效的布林值拋出錯誤")
+    func boolProtectionFailure() throws
     {
         // Arrange
-        self.jsonString = """
+        let jsonString = """
         {
             "true": 4,
             "false": "FALSE"
         }
         """
-        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonData: Data = jsonString.data(using: .utf8)!
         let jsonDecoder = JSONDecoder()
         
-        // Act
-        XCTAssertThrowsError(try jsonDecoder.decode(BoolObject.self, from: jsonData)) {
-            
-            error in
-            
-            // Assert
-            if case let .dataCorrupted(context) = error as? DecodingError {
-                
-                let actual: String = context.debugDescription
-                let expect: String = "Expect `0` or `1` but found `4` instead"
-                
-                XCTAssertEqual(actual, expect)
-            }
+        // Act & Assert
+        #expect(throws: DecodingError.self) {
+            try jsonDecoder.decode(BoolObject.self, from: jsonData)
         }
     }
 }

@@ -1,11 +1,12 @@
 //
 //  AESDecoderTest.swift
-//  JsonDecodeProtectionTests
+//  JsonProtectionTests
 //
-//  Created by Eden on 2023/4/10.
+//  Created by Darktt on 2023/4/10.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable
 import JsonProtection
 
@@ -40,17 +41,11 @@ struct AESAdopting: AESAdopter
     }
 }
 
-final
-class AESDecoderTest: XCTestCase
+struct AESDecoderTest
 {
-    var object: AESObject?
-    
-    override
-    func setUpWithError() throws
+    private
+    func createTestObject() throws -> AESObject
     {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // Arrange
         let jsonString: String = """
         {
             "url": "0NhMzVQIsjShyNnck3huFVjVCcku2a+iAQVfY3CDrUw=",
@@ -63,50 +58,35 @@ class AESDecoderTest: XCTestCase
         let jsonData: Data = jsonString.data(using: .utf8)!
         let jsonDecoder = JSONDecoder()
         
-        // Act
-        let object = try jsonDecoder.decode(AESObject.self, from: jsonData)
-        self.object = object
-        
-        // Assert
+        return try jsonDecoder.decode(AESObject.self, from: jsonData)
     }
     
-    override func tearDown() {
-        super.tearDown()
-        // 確保每個測試案例結束後清理狀態
-    }
-    
-    func testAESDecoderSuccess() throws
+    @Test("AES 解碼器應該正確解密字串值")
+    func aesDecoderSuccess() throws
     {
         // Arrange
-        guard let object: AESObject = self.object else {
-            
-            XCTFail("Object should not be nil")
-            return
-        }
+        let object = try createTestObject()
         
         // Act
         let url: String? = object.url
         let expect: String = "https://www.apple.com"
         
         // Assert
-        XCTAssertEqual(url, expect)
+        #expect(url == expect)
     }
     
-    func testDecoderStringArraySuccess() throws
+    @Test("AES 解碼器應該正確解密字串陣列值")
+    func decoderStringArraySuccess() throws
     {
         // Arrange
-        guard let object: AESObject = self.object else {
-            
-            XCTFail("Object should not be nil")
-            return
-        }
+        let object = try createTestObject()
         
         // Act
         let urls: Array<String>? = object.urls
         let expect: Array<String> = ["https://www.apple.com", "https://www.apple.com"]
         
         // Assert
-        XCTAssertEqual(urls, expect)
+        #expect(urls == expect)
     }
 }
 

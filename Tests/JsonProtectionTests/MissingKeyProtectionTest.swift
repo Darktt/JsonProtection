@@ -1,11 +1,12 @@
 //
 //  MissingKeyProtectionTest.swift
-//  JsonDecodeProtectionTests
+//  JsonProtectionTests
 //
 //  Created by Darktt on 2022/12/2.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable
 import JsonProtection
 
@@ -21,39 +22,25 @@ struct MissingKeyObject: Decodable
     var missingKey: String?
 }
 
-final class MissingKeyProtectionTest: XCTestCase
+struct MissingKeyProtectionTest
 {
-    var jsonString: String!
-    
-    override func setUpWithError() throws
+    @Test("缺失鍵保護應該優雅地處理缺失的鍵")
+    func missingKeyProtectionSuccess() throws
     {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
         // Arrange
-        
-        // Act
-        
-        // Assert
-    }
-    
-    func testMissingKeyProtectionSuccess() throws
-    {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // Arrange
-        self.jsonString = """
+        let jsonString = """
         {
             "existKey": "Something"
         }
         """
-        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonData: Data = jsonString.data(using: .utf8)!
         let jsonDecoder = JSONDecoder()
         
         // Act
         let object = try jsonDecoder.decode(MissingKeyObject.self, from: jsonData)
         
         // Assert
-        XCTAssertTrue(object.existKey == "Something")
-        XCTAssertTrue(object.missingKey == nil)
+        #expect(object.existKey == "Something")
+        #expect(object.missingKey == nil)
     }
 }

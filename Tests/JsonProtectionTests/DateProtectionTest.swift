@@ -1,11 +1,12 @@
 //
 //  DateProtectionTest.swift
-//  JsonDecodeProtectionTests
+//  JsonProtectionTests
 //
-//  Created by Eden on 2023/9/8.
+//  Created by Darktt on 2023/9/8.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable
 import JsonProtection
 
@@ -29,31 +30,19 @@ extension DateObject
     }
 }
 
-final class DateProtectionTest: XCTestCase
+struct DateProtectionTest
 {
-    var jsonString: String!
-    
-    override func setUpWithError() throws
-    {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // Arrange
-        
-        // Act
-        
-        // Assert
-    }
-    
-    func testDateProtectionSuccess() throws
+    @Test("日期保護應該使用自定義格式正確解碼日期")
+    func dateProtectionSuccess() throws
     {
         // Arrange
-        self.jsonString = """
+        let jsonString = """
         {
             "updateTime": 1694102400,
             "expiredDate": "202309080100"
         }
         """
-        let jsonData: Data = self.jsonString.data(using: .utf8)!
+        let jsonData: Data = jsonString.data(using: .utf8)!
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .secondsSince1970
         
@@ -63,7 +52,7 @@ final class DateProtectionTest: XCTestCase
         let expiredDate = Date(timeIntervalSince1970: 1694106000.0)
         
         // Assert
-        XCTAssertEqual(object.updateTime, updateTime)
-        XCTAssertEqual(object.expiredDate, expiredDate)
+        #expect(object.updateTime == updateTime)
+        #expect(object.expiredDate == expiredDate)
     }
 }
